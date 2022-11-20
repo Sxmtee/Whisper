@@ -15,7 +15,13 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       body: Center(
         child: Column(
-          children: [],
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Images/chatzo.png"))),
+            )
+          ],
         ),
       ),
     );
