@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:whisper/Screens/homeScreen.dart';
+import 'package:whisper/main.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -10,6 +15,39 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
+  FirebaseFirestore Firestore = FirebaseFirestore.instance;
+
+  Future SignInFunction() async {
+    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    if (googleUser == null) {
+      return;
+    }
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    DocumentSnapshot userExist =
+        await Firestore.collection("users").doc(userCredential.user!.uid).get();
+    if (userExist.exists) {
+      print("User Exists");
+    } else {
+      await Firestore.collection("users").doc(userCredential.user!.uid).set({
+        "email": userCredential.user!.email,
+        "name": userCredential.user!.displayName,
+        "image": userCredential.user!.photoURL,
+        "uid": userCredential.user!.uid,
+        "date": DateTime.now()
+      });
+    }
+
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => MyApp()), (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +69,9 @@ class _AuthScreenState extends State<AuthScreen> {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: (() {}),
+              onPressed: (() async {
+                await SignInFunction();
+              }),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
