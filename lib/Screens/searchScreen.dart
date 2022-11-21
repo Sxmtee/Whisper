@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:whisper/Models/userModel.dart';
+import 'package:whisper/Screens/chatScreen.dart';
 
 class SearchScreen extends StatefulWidget {
   UserModel user;
@@ -51,6 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Whisper To Your Friends"),
       ),
       body: Column(
@@ -88,7 +90,18 @@ class _SearchScreenState extends State<SearchScreen> {
                     title: Text(searchResult[index]["name"]),
                     subtitle: Text(searchResult[index]["email"]),
                     trailing: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          searchController.text = "";
+                        });
+                        var route = MaterialPageRoute(
+                            builder: ((context) => ChatScreen(
+                                currentUser: widget.user,
+                                friendId: searchResult[index]["uid"],
+                                friendName: searchResult[index]["name"],
+                                friendImage: searchResult[index]["image"])));
+                        Navigator.push(context, route);
+                      },
                       icon: Icon(Icons.message),
                     ),
                   );
