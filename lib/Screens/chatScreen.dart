@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Widgets/chatTextField.dart';
+import 'package:whisper/Widgets/singleText.dart';
 
 class ChatScreen extends StatelessWidget {
   final UserModel currentUser;
@@ -51,7 +53,40 @@ class ChatScreen extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
                       topRight: Radius.circular(25))),
-              child: Container(),
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("users")
+                    .doc(currentUser.uid)
+                    .collection("messages")
+                    .doc(friendId)
+                    .collection("chats")
+                    .orderBy("date", descending: true)
+                    .snapshots(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data.docs.length < 1) {
+                      return Center(
+                        child: Text("Hi"),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: snapshot.data.docs.length,
+                      reverse: true,
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        bool isMe = snapshot.data.docs[index]["senderId"] ==
+                            currentUser.uid;
+                        return SingleText(
+                            message: snapshot.data.docs[index]["message"],
+                            isMe: isMe);
+                      },
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
           ),
           ChatTextField(currentUser.uid, friendId)
