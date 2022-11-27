@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -39,7 +40,51 @@ class _ChatTextFieldState extends State<ChatTextField> {
             width: 20,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              String message = _controller.text;
+              _controller.clear();
+              await FirebaseFirestore.instance
+                  .collection("users")
+                  .doc(widget.currentId)
+                  .collection("messages")
+                  .doc(widget.friendId)
+                  .collection("chats")
+                  .add({
+                "senderId": widget.currentId,
+                "receiverId": widget.friendId,
+                "message": message,
+                "type": "text",
+                "date": DateTime.now(),
+              }).then((value) {
+                FirebaseFirestore.instance
+                    .collection("users")
+                    .doc(widget.currentId)
+                    .collection("messages")
+                    .doc(widget.friendId)
+                    .set({"last_msg": message});
+              });
+
+              await FirebaseFirestore.instance
+                  .collection("users")
+                  .doc(widget.friendId)
+                  .collection("messages")
+                  .doc(widget.currentId)
+                  .collection("chats")
+                  .add({
+                "senderId": widget.currentId,
+                "receiverId": widget.friendId,
+                "message": message,
+                "type": "text",
+                "date": DateTime.now(),
+              }).then((value) {
+                FirebaseFirestore.instance
+                    .collection("users")
+                    .doc(widget.friendId)
+                    .collection("messages")
+                    .doc(widget.currentId)
+                    .set({"last_msg": message});
+              });
+            },
             child: Container(
               padding: EdgeInsets.all(8),
               decoration:
