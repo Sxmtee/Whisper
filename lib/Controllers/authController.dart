@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/homeScreen.dart';
+import 'package:whisper/Screens/signInScreen.dart';
+import 'package:whisper/Screens/splashScreen.dart';
 import 'package:whisper/Utils/navigate.dart';
 
 GoogleSignIn googleSignIn = GoogleSignIn();
@@ -54,7 +56,10 @@ Future SignUpFunction(String email, String password) async {
   }
 }
 
-Future SignInFunction(String email, String password) async {
+Future SignInFunction(
+  String email,
+  String password,
+) async {
   try {
     UserCredential userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
@@ -70,7 +75,7 @@ void signInOldUser(BuildContext context) async {
   if (user != null) {
     signInWithId(user.uid, context);
   } else {
-    // NavigateLeftToRight(context, Welcome());
+    NavigateToPage(context, const SignInScreen());
   }
 }
 
@@ -85,6 +90,6 @@ void signInWithId(String uid, BuildContext context) async {
   } catch (e) {
     print(uid);
     print(Text("Error: ${e.toString()}"));
-    // NavigateLeftToRight(context, Welcome());
+    NavigateToPage(context, const SignInScreen());
   }
 }

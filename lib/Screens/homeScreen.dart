@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:whisper/Models/userModel.dart';
-import 'package:whisper/Screens/authScreen.dart';
 import 'package:whisper/Screens/chatScreen.dart';
 import 'package:whisper/Screens/searchScreen.dart';
+import 'package:whisper/Screens/signInScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   UserModel user;
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: ((context) => AuthScreen())),
+                    MaterialPageRoute(builder: ((context) => SignInScreen())),
                     (route) => false);
               }),
               icon: Icon(Icons.logout))

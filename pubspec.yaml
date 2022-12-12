@@ -43,6 +43,7 @@ dependencies:
   flutter_svg: ^1.1.6
   page_transition: ^2.0.9
   provider: ^6.0.4
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

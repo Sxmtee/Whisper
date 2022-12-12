@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whisper/Models/userModel.dart';
-import 'package:whisper/Screens/authScreen.dart';
 import 'package:whisper/Screens/homeScreen.dart';
 import 'package:whisper/Screens/splashScreen.dart';
 
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       UserModel userModel = UserModel.fromJson(userData);
       return HomeScreen(userModel);
     } else {
-      return AuthScreen();
+      return const SplashScreen();
     }
   }
 
@@ -49,20 +48,19 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: const SplashScreen(),
-      // FutureBuilder(
-      //   future: userSignedIn(),
-      //   builder: (context, AsyncSnapshot<Widget> snapshot) {
-      //     if (snapshot.hasData) {
-      //       return snapshot.data!;
-      //     }
-      //     return Scaffold(
-      //       body: Center(
-      //         child: CircularProgressIndicator(),
-      //       ),
-      //     );
-      //   },
-      // ),
+      home: FutureBuilder(
+        future: userSignedIn(),
+        builder: (context, AsyncSnapshot<Widget> snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data!;
+          }
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
+      ),
     );
   }
 }
