@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/authScreen.dart';
 import 'package:whisper/Screens/homeScreen.dart';
+import 'package:whisper/Screens/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,19 +49,20 @@ class MyApp extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: FutureBuilder(
-        future: userSignedIn(),
-        builder: (context, AsyncSnapshot<Widget> snapshot) {
-          if (snapshot.hasData) {
-            return snapshot.data!;
-          }
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        },
-      ),
+      home: const SplashScreen(),
+      // FutureBuilder(
+      //   future: userSignedIn(),
+      //   builder: (context, AsyncSnapshot<Widget> snapshot) {
+      //     if (snapshot.hasData) {
+      //       return snapshot.data!;
+      //     }
+      //     return Scaffold(
+      //       body: Center(
+      //         child: CircularProgressIndicator(),
+      //       ),
+      //     );
+      //   },
+      // ),
     );
   }
 }
