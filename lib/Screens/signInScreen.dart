@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:whisper/Controllers/authController.dart';
 import 'package:whisper/Screens/signUpScreen.dart';
+import 'package:whisper/Screens/splashScreen.dart';
 import 'package:whisper/Utils/navigate.dart';
+import 'package:whisper/Utils/snackBar.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,11 +19,43 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  var _formKey = GlobalKey();
+  var _formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  String msg = "";
-  bool isLoding = false;
+  bool isLoading = false;
+
+  GoogleSignIn googleSignIn = GoogleSignIn();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future googleInFunction() async {
+    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    if (googleUser == null) {
+      return;
+    }
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    DocumentSnapshot userExist =
+        await firestore.collection("users").doc(userCredential.user!.uid).get();
+    // UserModel userModel = UserModel.fromJson(userExist);
+
+    if (userExist.exists) {
+      print("User Already Exists");
+    } else {
+      await firestore.collection("users").doc(userCredential.user!.uid).set({
+        "email": userCredential.user!.email,
+        "name": userCredential.user!.displayName,
+        "image": userCredential.user!.photoURL,
+        "uid": userCredential.user!.uid,
+        "date": DateTime.now()
+      });
+    }
+    NavigateToPage(context, SplashScreen());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,10 +127,39 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
+                Visibility(
+                    visible: isLoading,
+                    child: Container(
+                        margin:
+                            const EdgeInsets.only(top: 10, left: 20, right: 20),
+                        child: const LinearProgressIndicator(
+                          color: Color(0xFFF77D8E),
+                        ))),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 24),
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        try {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          var email = emailController.text;
+                          var password = passwordController.text;
+                          signInFunction(email, password, context);
+                          // showSnackBar(
+                          //     context, "Sign Up Successful, Proceed to Login");
+                          setState(() {
+                            emailController.text = "";
+                            passwordController.text = "";
+                            isLoading = false;
+                          });
+                        } catch (e) {
+                          print(Text("Error: ${e.toString()}"));
+                        }
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF77D8E),
                       minimumSize: const Size(double.infinity, 56),
@@ -141,7 +208,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        try {
+                          await googleInFunction();
+                        } catch (e) {
+                          print(Text("Error: ${e.toString()}"));
+                        }
+                      },
                       padding: EdgeInsets.zero,
                       icon: SvgPicture.asset(
                         "assets/icons/google_box.svg",
@@ -157,7 +230,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Row(
                     children: [
                       const Text(
-                        "Do Not Have An Account ?",
+                        "Do not have an account ?",
                         style: TextStyle(color: Colors.black54),
                       ),
                       const SizedBox(

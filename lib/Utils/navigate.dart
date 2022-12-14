@@ -6,6 +6,7 @@ void NavigateToPage(BuildContext context, Widget child) {
       context,
       PageTransition(
           type: PageTransitionType.rotate,
-          duration: Duration(milliseconds: 500),
+          alignment: Alignment.center,
+          duration: const Duration(seconds: 1),
           child: child));
 }
