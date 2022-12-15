@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:whisper/Screens/splashScreen.dart';
+import 'package:whisper/Utils/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Whisper',
         theme: ThemeData(
+          primaryColor: AppColors.primaryColor,
           scaffoldBackgroundColor: Color(0xFFEEF1F8),
           primarySwatch: Colors.blue,
           fontFamily: "Intel",

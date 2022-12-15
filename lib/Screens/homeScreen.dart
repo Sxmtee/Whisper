@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.hasData) {
               if (snapshot.data.docs.length < 1) {
                 return const Center(
-                  child: Text("No Available Whispers"),
+                  child: Text("No Available Whispmates"),
                 );
               }
               return ListView.builder(

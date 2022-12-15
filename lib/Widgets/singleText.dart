@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:whisper/Utils/colors.dart';
 
 class SingleText extends StatelessWidget {
   // const SingleText({super.key});
@@ -19,13 +17,11 @@ class SingleText extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           constraints: const BoxConstraints(minWidth: 200),
           decoration: BoxDecoration(
-              color: isMe ? Colors.teal : Colors.brown,
+              color: isMe ? AppColors.primaryColor : Colors.brown,
               borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: Text(
             message,
-            style: TextStyle(
-              color: Colors.white,
-            ),
+            style: const TextStyle(color: Colors.white, fontFamily: "Poppins"),
           ),
         )
       ],

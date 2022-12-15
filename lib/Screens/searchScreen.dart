@@ -85,25 +85,31 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: searchResult.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                        child: Image.network(searchResult[index]["image"])),
-                    title: Text(searchResult[index]["name"]),
-                    subtitle: Text(searchResult[index]["email"]),
-                    trailing: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          searchController.text = "";
-                        });
-                        var route = MaterialPageRoute(
-                            builder: ((context) => ChatScreen(
-                                currentUser: widget.user,
-                                friendId: searchResult[index]["uid"],
-                                friendName: searchResult[index]["name"],
-                                friendImage: searchResult[index]["image"])));
-                        Navigator.push(context, route);
-                      },
-                      icon: const Icon(Icons.message),
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        searchController.text = "";
+                      });
+                      var route = MaterialPageRoute(
+                          builder: ((context) => ChatScreen(
+                              currentUser: widget.user,
+                              friendId: searchResult[index]["uid"],
+                              friendName: searchResult[index]["name"],
+                              friendImage: searchResult[index]["image"])));
+                      Navigator.push(context, route);
+                    },
+                    child: Card(
+                      elevation: 10,
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            child: Image.network(searchResult[index]["image"])),
+                        title: Text(searchResult[index]["name"]),
+                        subtitle: Text(searchResult[index]["email"]),
+                        trailing: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.message),
+                        ),
+                      ),
                     ),
                   );
                 },

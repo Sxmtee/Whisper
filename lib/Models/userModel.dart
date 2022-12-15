@@ -8,15 +8,15 @@ class UserModel {
   String image;
   Timestamp date;
   String uid;
+  String? about;
 
   UserModel(
       {required this.email,
       required this.name,
       required this.image,
       required this.date,
-      required this.uid}) {
-    // _shared = this;
-  }
+      required this.uid,
+      this.about});
 
   factory UserModel.fromJson(DocumentSnapshot snapshot) {
     return UserModel(
