@@ -72,7 +72,7 @@ class ChatScreen extends StatelessWidget {
                     return ListView.builder(
                       itemCount: snapshot.data.docs.length,
                       reverse: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         bool isMe = snapshot.data.docs[index]["senderId"] ==
                             currentUser.uid;
@@ -82,7 +82,7 @@ class ChatScreen extends StatelessWidget {
                       },
                     );
                   }
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 },

@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/chatScreen.dart';
+import 'package:whisper/Utils/snackBar.dart';
+import 'package:whisper/Widgets/appHead.dart';
 
 class SearchScreen extends StatefulWidget {
   UserModel user;
@@ -30,8 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
         .get()
         .then((value) {
       if (value.docs.isEmpty) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text("No User Found")));
+        showSnackBar(context, "No User Found");
         setState(() {
           isLoading = false;
         });
@@ -51,17 +52,14 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("Whisper To Your Friends"),
-      ),
+      appBar: dashboardHead(context),
       body: Column(
         children: [
           Row(
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: TextField(
                     controller: searchController,
                     decoration: InputDecoration(
@@ -75,7 +73,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   onPressed: (() {
                     onSearch();
                   }),
-                  icon: Icon(Icons.search))
+                  icon: const Icon(
+                    Icons.search,
+                    size: 30,
+                  ))
             ],
           ),
           if (searchResult.isNotEmpty)
@@ -102,7 +103,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 friendImage: searchResult[index]["image"])));
                         Navigator.push(context, route);
                       },
-                      icon: Icon(Icons.message),
+                      icon: const Icon(Icons.message),
                     ),
                   );
                 },

@@ -13,7 +13,6 @@ import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/homeScreen.dart';
 import 'package:whisper/Screens/signInScreen.dart';
 import 'package:whisper/Utils/navigate.dart';
-import 'package:whisper/Utils/snackBar.dart';
 import 'package:path/path.dart' as path;
 
 class SignUpScreen extends StatefulWidget {
@@ -80,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         setState(() {
           isLoading = false;
         });
-      } else {}
+      }
     } catch (e) {
       print(Text("Error: ${e.toString()}"));
       setState(() {

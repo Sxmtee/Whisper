@@ -15,12 +15,12 @@ class SingleText extends StatelessWidget {
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(10),
-          constraints: BoxConstraints(minWidth: 200),
+          padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(10),
+          constraints: const BoxConstraints(minWidth: 200),
           decoration: BoxDecoration(
               color: isMe ? Colors.teal : Colors.brown,
-              borderRadius: BorderRadius.all(Radius.circular(15))),
+              borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: Text(
             message,
             style: TextStyle(

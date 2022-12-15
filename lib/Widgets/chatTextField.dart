@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:whisper/Utils/colors.dart';
 
 class ChatTextField extends StatefulWidget {
   // const ChatTextField({super.key});
@@ -86,10 +85,10 @@ class _ChatTextFieldState extends State<ChatTextField> {
               });
             },
             child: Container(
-              padding: EdgeInsets.all(8),
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.blue),
-              child: Icon(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColors.primaryColor),
+              child: const Icon(
                 Icons.send,
                 color: Colors.white,
               ),
