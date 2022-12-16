@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whisper/Models/userModel.dart';
+import 'package:whisper/Utils/colors.dart';
 import 'package:whisper/Widgets/chatTextField.dart';
 import 'package:whisper/Widgets/singleText.dart';
 
@@ -21,7 +23,7 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.teal,
+        backgroundColor: AppColors.primaryColor,
         title: Row(
           children: [
             ClipRRect(
@@ -64,7 +66,11 @@ class ChatScreen extends StatelessWidget {
                   if (snapshot.hasData) {
                     if (snapshot.data.docs.length < 1) {
                       return Center(
-                        child: Text("Hi"),
+                        child: SvgPicture.asset(
+                          "assets/icons/whisper4a.svg",
+                          color: AppColors.primaryColor,
+                          height: 80,
+                        ),
                       );
                     }
                     return ListView.builder(

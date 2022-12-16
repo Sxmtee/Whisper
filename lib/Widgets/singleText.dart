@@ -16,12 +16,17 @@ class SingleText extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.all(10),
           constraints: const BoxConstraints(minWidth: 200),
+          // alignment: Alignment.topLeft,
           decoration: BoxDecoration(
-              color: isMe ? AppColors.primaryColor : Colors.brown,
+              color: isMe ? AppColors.primaryColor : Colors.blueGrey,
               borderRadius: const BorderRadius.all(Radius.circular(15))),
-          child: Text(
-            message,
-            style: const TextStyle(color: Colors.white, fontFamily: "Poppins"),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 50),
+            child: Text(
+              message,
+              style:
+                  const TextStyle(color: Colors.white, fontFamily: "Poppins"),
+            ),
           ),
         )
       ],

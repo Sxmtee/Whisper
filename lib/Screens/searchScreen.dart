@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/chatScreen.dart';
+import 'package:whisper/Utils/colors.dart';
 import 'package:whisper/Utils/snackBar.dart';
 import 'package:whisper/Widgets/appHead.dart';
 
@@ -63,7 +63,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: searchController,
                     decoration: InputDecoration(
-                        hintText: "Type Whispername",
+                        hintText: "Search Whispname",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15))),
                   ),
@@ -78,6 +78,13 @@ class _SearchScreenState extends State<SearchScreen> {
                     size: 30,
                   ))
             ],
+          ),
+          Visibility(
+            visible: isLoading,
+            child: const CupertinoActivityIndicator(
+              radius: 50,
+              color: AppColors.primaryColor,
+            ),
           ),
           if (searchResult.isNotEmpty)
             Expanded(
@@ -107,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         subtitle: Text(searchResult[index]["email"]),
                         trailing: IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.message),
+                          icon: const Icon(Icons.chat_bubble_rounded),
                         ),
                       ),
                     ),

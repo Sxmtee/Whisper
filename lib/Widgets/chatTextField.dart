@@ -25,6 +25,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
           Expanded(
             child: TextField(
               controller: _controller,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              textInputAction: TextInputAction.newline,
               decoration: InputDecoration(
                   labelText: "Whisper...",
                   fillColor: Colors.grey[100],
