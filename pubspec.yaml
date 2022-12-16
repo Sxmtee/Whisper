@@ -48,6 +48,13 @@ dependencies:
   path: ^1.8.2
   image_picker: ^0.8.6
   curved_navigation_bar: ^1.0.3
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Images/whisper4.jpg"
+  min_sdk_android: 21
 
 
 dev_dependencies:
