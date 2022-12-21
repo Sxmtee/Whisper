@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:whisper/Utils/colors.dart';
 
 class SingleText extends StatelessWidget {
-  // const SingleText({super.key});
   final String message;
   final bool isMe;
   SingleText({required this.message, required this.isMe});
@@ -16,12 +15,11 @@ class SingleText extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.all(10),
           constraints: const BoxConstraints(minWidth: 200),
-          // alignment: Alignment.topLeft,
           decoration: BoxDecoration(
               color: isMe ? AppColors.primaryColor : Colors.blueGrey,
               borderRadius: const BorderRadius.all(Radius.circular(15))),
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 50),
+            constraints: const BoxConstraints(maxWidth: 50),
             child: Text(
               message,
               style:

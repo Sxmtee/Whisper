@@ -11,7 +11,6 @@ import 'package:whisper/Widgets/appHead.dart';
 class HomeScreen extends StatefulWidget {
   UserModel user;
   HomeScreen(this.user);
-  // HomeScreen({super.key, required this.user});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -77,12 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Image.network(friend["image"]),
                           ),
                           title: Text(friend["name"]),
-                          subtitle: Container(
-                            child: Text(
-                              "$lastMsg",
-                              style: const TextStyle(color: Colors.grey),
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                          subtitle: Text(
+                            "$lastMsg",
+                            style: const TextStyle(color: Colors.grey),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         );
                       }

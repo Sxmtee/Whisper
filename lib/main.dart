@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         title: 'Whisper',
         theme: ThemeData(
           primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: Color(0xFFEEF1F8),
+          scaffoldBackgroundColor: const Color(0xFFEEF1F8),
           primarySwatch: Colors.blue,
           fontFamily: "Intel",
           inputDecorationTheme: const InputDecorationTheme(
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             errorBorder: defaultInputBorder,
           ),
         ),
-        home: SplashScreen()
+        home: const SplashScreen()
         // FutureBuilder(
         //   future: userSignedIn(),
         //   builder: (context, AsyncSnapshot<Widget> snapshot) {

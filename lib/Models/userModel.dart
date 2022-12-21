@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class UserModel {
-  // static late UserModel _shared;
   String email;
   String name;
   String image;
@@ -26,6 +24,4 @@ class UserModel {
         date: snapshot["date"],
         uid: snapshot["uid"]);
   }
-
-  // factory UserModel.instance() => _shared;
 }

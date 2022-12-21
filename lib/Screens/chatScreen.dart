@@ -33,12 +33,12 @@ class ChatScreen extends StatelessWidget {
                 height: 35,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text(
               friendName,
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             )
           ],
         ),
@@ -47,8 +47,8 @@ class ChatScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),

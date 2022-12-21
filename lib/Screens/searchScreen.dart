@@ -10,7 +10,6 @@ import 'package:whisper/Widgets/appHead.dart';
 class SearchScreen extends StatefulWidget {
   UserModel user;
   SearchScreen(this.user);
-  // const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
