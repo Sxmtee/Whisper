@@ -5,8 +5,7 @@ void NavigateToPage(BuildContext context, Widget child) {
   Navigator.push(
       context,
       PageTransition(
-          type: PageTransitionType.rotate,
-          alignment: Alignment.center,
+          type: PageTransitionType.leftToRight,
           duration: const Duration(seconds: 1),
           child: child));
 }
