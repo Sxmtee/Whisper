@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:whisper/Common/Utils/colors.dart';
 
 showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      backgroundColor: const Color(0xFFF77D8E),
+      backgroundColor: AppColors.primaryColor,
       shape: const StadiumBorder(),
       elevation: 10,
       duration: const Duration(seconds: 6),
