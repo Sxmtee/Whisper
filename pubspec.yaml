@@ -41,13 +41,12 @@ dependencies:
   cloud_firestore: ^4.1.0
   rive: ^0.9.1
   flutter_svg: ^1.1.6
-  page_transition: ^2.0.9
-  provider: ^6.0.4
   email_validator: ^2.1.17
   firebase_storage: ^11.0.7
   path: ^1.8.2
   image_picker: ^0.8.6
   curved_navigation_bar: ^1.0.3
+  country_picker: ^2.0.19
   flutter_launcher_icons: ^0.11.0
 
 flutter_icons:

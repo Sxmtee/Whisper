@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/chatScreen.dart';
 import 'package:whisper/Screens/searchScreen.dart';
-import 'package:whisper/Utils/colors.dart';
-import 'package:whisper/Utils/snackBar.dart';
-import 'package:whisper/Widgets/appHead.dart';
+import 'package:whisper/Common/Utils/colors.dart';
+import 'package:whisper/Common/Utils/snackBar.dart';
+import 'package:whisper/Common/Widgets/appHead.dart';
 
 class HomeScreen extends StatefulWidget {
   UserModel user;

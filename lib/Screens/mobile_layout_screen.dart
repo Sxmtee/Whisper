@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whisper/Utils/colors.dart';
-import 'package:whisper/Widgets/contacts_list.dart';
+import 'package:whisper/Common/Utils/colors.dart';
+import 'package:whisper/Common/Widgets/contacts_list.dart';
 
 class MobileLayoutScreen extends StatelessWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);

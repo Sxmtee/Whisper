@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:whisper/Utils/dimensions.dart';
+import 'package:whisper/Common/Utils/dimensions.dart';
 
 Widget OpacityBg(BuildContext context, Widget body) {
   return Stack(

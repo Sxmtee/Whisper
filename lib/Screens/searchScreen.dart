@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/chatScreen.dart';
-import 'package:whisper/Utils/colors.dart';
-import 'package:whisper/Utils/snackBar.dart';
-import 'package:whisper/Widgets/appHead.dart';
+import 'package:whisper/Common/Utils/colors.dart';
+import 'package:whisper/Common/Utils/snackBar.dart';
+import 'package:whisper/Common/Widgets/appHead.dart';
 
 class SearchScreen extends StatefulWidget {
   UserModel user;

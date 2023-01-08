@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:whisper/Screens/signInScreen.dart';
-import 'package:whisper/Utils/colors.dart';
+import 'package:whisper/Common/Utils/colors.dart';
 
 AppBar dashboardHead(context) {
   return AppBar(
@@ -23,10 +22,6 @@ AppBar dashboardHead(context) {
           onPressed: (() async {
             await GoogleSignIn().signOut();
             await FirebaseAuth.instance.signOut();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: ((context) => SignInScreen())),
-                (route) => false);
           }),
           icon: Icon(
             Icons.logout,

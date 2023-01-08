@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:whisper/Common/Utils/router.dart';
+import 'package:whisper/Features/Landing/landing_screen.dart';
 import 'package:whisper/Screens/mobile_layout_screen.dart';
 import 'package:whisper/Screens/web_layout_screen.dart';
-import 'package:whisper/Utils/colors.dart';
-import 'package:whisper/Utils/responsive_layout.dart';
+import 'package:whisper/Common/Utils/colors.dart';
+import 'package:whisper/Common/Utils/responsive_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,28 +19,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Whisper',
-      theme: ThemeData.dark().copyWith(
-        primaryColor: AppColors.primaryColor,
-        scaffoldBackgroundColor: AppColors.backgroundColorLight,
-        // primarySwatch: Colors.blue,
-        // fontFamily: "Intel",
-        inputDecorationTheme: const InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
+        debugShowCheckedModeBanner: false,
+        title: 'Whisper',
+        theme: ThemeData.dark().copyWith(
+          primaryColor: AppColors.primaryColor,
+          scaffoldBackgroundColor: AppColors.backgroundColor,
+          appBarTheme: const AppBarTheme(color: AppColors.appBarColor),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: Colors.transparent,
+            errorStyle: TextStyle(height: 0),
+            border: defaultInputBorder,
+            enabledBorder: defaultInputBorder,
+            focusedBorder: defaultInputBorder,
+            errorBorder: defaultInputBorder,
+          ),
         ),
-      ),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileLayoutScreen(),
-        webScreenLayout: WebLayoutScreen(),
-      ),
-    );
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: const LandingScreen()
+        // ResponsiveLayout(
+        //   mobileScreenLayout: MobileLayoutScreen(),
+        //   webScreenLayout: WebLayoutScreen(),
+        // ),
+        );
   }
 }
 

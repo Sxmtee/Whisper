@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:whisper/Utils/colors.dart';
+import 'package:whisper/Common/Utils/colors.dart';
 
 class ChatTextField extends StatefulWidget {
   // const ChatTextField({super.key});
