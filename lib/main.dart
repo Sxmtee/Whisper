@@ -53,7 +53,10 @@ class MyApp extends ConsumerWidget {
             error: ((error, stackTrace) {
               return ErrorScreen(error: error.toString());
             }),
-            loading: (() => const Loader())));
+            loading: (() => const Loader(
+                  radius: 60,
+                  color: AppColors.primaryColor,
+                ))));
   }
 }
 
