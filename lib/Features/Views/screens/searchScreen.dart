@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:whisper/Models/userModel.dart';
-import 'package:whisper/Screens/chatScreen.dart';
+import 'package:whisper/Features/Views/screens/chatScreen.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
 import 'package:whisper/Common/Widgets/appHead.dart';
@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
         return;
       }
       value.docs.forEach((user) {
-        if (user.data()["email"] != widget.user.email) {
+        if (user.data()["name"] != widget.user.name) {
           searchResult.add(user.data());
         }
       });

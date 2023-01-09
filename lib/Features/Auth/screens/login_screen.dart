@@ -50,6 +50,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Enter Your Phone Number"),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: AppColors.backgroundColor,
       ),

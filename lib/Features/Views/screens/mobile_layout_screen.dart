@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Widgets/contacts_list.dart';
+import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
 
 class MobileLayoutScreen extends StatelessWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class MobileLayoutScreen extends StatelessWidget {
           backgroundColor: AppColors.appBarColor,
           centerTitle: false,
           title: const Text(
-            'WhatsApp',
+            'Whisper',
             style: TextStyle(
               fontSize: 20,
               color: Colors.grey,
@@ -33,32 +34,34 @@ class MobileLayoutScreen extends StatelessWidget {
             ),
           ],
           bottom: const TabBar(
-            indicatorColor: AppColors.tabColor,
+            indicatorColor: AppColors.primaryColor,
             indicatorWeight: 4,
-            labelColor: AppColors.tabColor,
+            labelColor: AppColors.primaryColor,
             unselectedLabelColor: Colors.grey,
             labelStyle: TextStyle(
               fontWeight: FontWeight.bold,
             ),
             tabs: [
               Tab(
-                text: 'CHATS',
+                text: 'WHISPERS',
               ),
               Tab(
-                text: 'STATUS',
+                text: 'SECRETS',
               ),
               Tab(
-                text: 'CALLS',
+                text: 'ECHO',
               ),
             ],
           ),
         ),
         body: const ContactsList(),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: AppColors.tabColor,
+          onPressed: () {
+            Navigator.pushNamed(context, SelectContactScreen.routeName);
+          },
+          backgroundColor: AppColors.primaryColor,
           child: const Icon(
-            Icons.comment,
+            Icons.contact_page_outlined,
             color: Colors.white,
           ),
         ),

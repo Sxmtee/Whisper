@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whisper/Screens/mobile_chat_screen.dart';
+import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/info.dart';
 

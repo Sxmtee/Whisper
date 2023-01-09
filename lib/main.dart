@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Utils/router.dart';
+import 'package:whisper/Common/Widgets/error_screen.dart';
+import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Landing/landing_screen.dart';
-import 'package:whisper/Screens/mobile_layout_screen.dart';
-import 'package:whisper/Screens/web_layout_screen.dart';
+import 'package:whisper/Features/Views/screens/mobile_layout_screen.dart';
+import 'package:whisper/Features/Views/screens/web_layout_screen.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/responsive_layout.dart';
 
@@ -14,11 +17,11 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Whisper',
@@ -37,12 +40,20 @@ class MyApp extends StatelessWidget {
           ),
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
-        home: const LandingScreen()
-        // ResponsiveLayout(
-        //   mobileScreenLayout: MobileLayoutScreen(),
-        //   webScreenLayout: WebLayoutScreen(),
-        // ),
-        );
+        home: ref.watch(userDataAuthProvider).when(
+            data: ((user) {
+              if (user == null) {
+                return const LandingScreen();
+              }
+              return const ResponsiveLayout(
+                mobileScreenLayout: MobileLayoutScreen(),
+                webScreenLayout: WebLayoutScreen(),
+              );
+            }),
+            error: ((error, stackTrace) {
+              return ErrorScreen(error: error.toString());
+            }),
+            loading: (() => const Loader())));
   }
 }
 

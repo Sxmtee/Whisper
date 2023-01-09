@@ -3,6 +3,7 @@ import 'package:whisper/Common/Widgets/error_screen.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
+import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -19,6 +20,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case UserInfoScreen.routeName:
       return MaterialPageRoute(builder: (context) => const UserInfoScreen());
+    case SelectContactScreen.routeName:
+      return MaterialPageRoute(
+          builder: (context) => const SelectContactScreen());
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
