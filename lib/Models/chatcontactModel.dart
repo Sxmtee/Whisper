@@ -24,11 +24,11 @@ class ChatContactModel {
 
   factory ChatContactModel.fromMap(Map<String, dynamic> map) {
     return ChatContactModel(
-      name: map["name"] ?? "",
-      profilePic: map["profilePic"] ?? "",
-      contactId: map["contactId"] ?? "",
+      name: map["name"],
+      profilePic: map["profilePic"],
+      contactId: map["contactId"],
       timeSent: DateTime.fromMillisecondsSinceEpoch(map["timeSent"]),
-      lastMessage: map["lastMessage"] ?? "",
+      lastMessage: map["lastMessage"],
     );
   }
 }
