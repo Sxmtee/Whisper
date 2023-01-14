@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whisper/Common/Widgets/error_screen.dart';
+import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';

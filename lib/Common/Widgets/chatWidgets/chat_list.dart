@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
-import 'package:whisper/Common/Widgets/error_screen.dart';
-import 'package:whisper/Common/Widgets/my_message_card.dart';
-import 'package:whisper/Common/Widgets/sender_message_card.dart';
+import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/my_message_card.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/sender_message_card.dart';
 import 'package:whisper/Features/Views/controllers/chat_controller.dart';
 
 class ChatList extends ConsumerStatefulWidget {
@@ -71,11 +71,13 @@ class _ChatListState extends ConsumerState<ChatList> {
                 return MyMessageCard(
                   message: messageData.text,
                   date: timeSent,
+                  type: messageData.type,
                 );
               }
               return SenderMessageCard(
                 message: messageData.text,
                 date: timeSent,
+                type: messageData.type,
               );
             },
           );

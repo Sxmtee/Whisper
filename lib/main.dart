@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Utils/router.dart';
-import 'package:whisper/Common/Widgets/error_screen.dart';
+import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Landing/landing_screen.dart';
 import 'package:whisper/Features/Views/screens/mobile_layout_screen.dart';

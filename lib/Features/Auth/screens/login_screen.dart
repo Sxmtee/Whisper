@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
-import 'package:whisper/Common/Widgets/custom_button.dart';
+import 'package:whisper/Common/Widgets/generalWidgets/custom_button.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {

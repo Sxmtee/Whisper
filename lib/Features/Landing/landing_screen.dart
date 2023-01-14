@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Common/Widgets/custom_button.dart';
+import 'package:whisper/Common/Widgets/generalWidgets/custom_button.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 
 class LandingScreen extends StatelessWidget {

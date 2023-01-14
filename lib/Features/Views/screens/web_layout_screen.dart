@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Common/Widgets/chat_list.dart';
-import 'package:whisper/Common/Widgets/contacts_list.dart';
-import 'package:whisper/Common/Widgets/web_chat_appbar.dart';
-import 'package:whisper/Common/Widgets/web_profile_bar.dart';
-import 'package:whisper/Common/Widgets/web_search_bar.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/chat_list.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/contacts_list.dart';
+import 'package:whisper/Common/Widgets/webWidgets/web_chat_appbar.dart';
+import 'package:whisper/Common/Widgets/webWidgets/web_profile_bar.dart';
+import 'package:whisper/Common/Widgets/webWidgets/web_search_bar.dart';
 
 class WebLayoutScreen extends StatelessWidget {
   const WebLayoutScreen({Key? key}) : super(key: key);

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
-import 'package:whisper/Common/Widgets/bottomChatField.dart';
-import 'package:whisper/Common/Widgets/chat_list.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/bottomChatField.dart';
+import 'package:whisper/Common/Widgets/chatWidgets/chat_list.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Models/userModel.dart';
 
