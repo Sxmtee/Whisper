@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Common/Utils/pickimage.dart';
+import 'package:whisper/Common/Utils/pickfile.dart';
 import 'package:whisper/Features/Views/controllers/chat_controller.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
@@ -52,6 +52,16 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
     File? video = await pickVideoFromGallery(context);
     if (video != null) {
       sendFileMessage(video, MessageEnum.video);
+    }
+  }
+
+  void selectGIF() async {
+    final gif = await pickGIF(context);
+    if (gif != null) {
+      // ignore: use_build_context_synchronously
+      ref
+          .read(chatControllerProvider)
+          .sendGIFMessage(context, gif.url, widget.receiverUserId);
     }
   }
 

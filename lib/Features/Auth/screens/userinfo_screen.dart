@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whisper/Common/Utils/pickimage.dart';
+import 'package:whisper/Common/Utils/pickfile.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 
 class UserInfoScreen extends ConsumerStatefulWidget {
