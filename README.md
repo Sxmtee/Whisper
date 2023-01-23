@@ -1,6 +1,6 @@
 # Whisper
 
-A anonymous flutter chat application developed using streambuilder and firebase
+An anonymous flutter chat application developed using streambuilder and firebase
 
 ## Features
 * Rive Animation Splashscreen
