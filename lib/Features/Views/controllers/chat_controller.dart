@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
+import 'package:whisper/Common/Providers/message_reply_provider.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Views/repositories/chat_repo.dart';
 import 'package:whisper/Models/chatcontactModel.dart';
@@ -34,16 +35,19 @@ class ChatController {
     String text,
     String receiverUserId,
   ) {
+    final messageReply = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData((value) =>
         chatRepository.sendTextMessage(
             context: context,
             text: text,
             receiverUserId: receiverUserId,
-            senderUser: value!));
+            senderUser: value!,
+            messageReply: messageReply));
   }
 
   void sendFileMessage(BuildContext context, File file, String receiverUserId,
       MessageEnum messageEnum) {
+    final messageReply = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData((value) =>
         chatRepository.sendFileMessage(
             context: context,
@@ -51,7 +55,8 @@ class ChatController {
             receiverUserId: receiverUserId,
             senderUserData: value!,
             ref: ref,
-            messageEnum: messageEnum));
+            messageEnum: messageEnum,
+            messageReply: messageReply));
   }
 
   void sendGIFMessage(
@@ -59,6 +64,7 @@ class ChatController {
     String gifUrl,
     String receiverUserId,
   ) {
+    final messageReply = ref.read(messageReplyProvider);
     int gifUrlPartIndex = gifUrl.lastIndexOf("_") + 1;
     String gifUrlPart = gifUrl.substring(gifUrlPartIndex);
     String newGifUrl = "https://i.giphy.com/media/$gifUrlPart/200.gif";
@@ -68,7 +74,8 @@ class ChatController {
           context: context,
           gifUrl: newGifUrl,
           receiverUserId: receiverUserId,
-          senderUser: value!);
+          senderUser: value!,
+          messageReply: messageReply);
     });
   }
 }
