@@ -56,6 +56,7 @@ dependencies:
   emoji_picker_flutter: ^1.5.2
   enough_giphy_flutter: ^0.3.0
   flutter_launcher_icons: ^0.11.0
+  swipe_to: ^1.0.2
 
 flutter_icons:
   android: "launcher_icon"
