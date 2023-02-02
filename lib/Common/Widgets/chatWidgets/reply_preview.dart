@@ -25,7 +25,9 @@ class ReplyPreview extends ConsumerWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               )),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  cancelReply(ref);
+                },
                 child: const Icon(
                   Icons.close,
                   size: 16,

@@ -4,6 +4,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:whisper/Common/Enums/message_enum.dart';
+import 'package:whisper/Common/Providers/message_reply_provider.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
@@ -29,6 +31,16 @@ class _ChatListState extends ConsumerState<ChatList> {
   void dispose() {
     super.dispose();
     messageController.dispose();
+  }
+
+  void onMessageSwipe(
+    String message,
+    bool isMe,
+    MessageEnum messageEnum,
+  ) {
+    ref
+        .read(messageReplyProvider.notifier)
+        .update((state) => MessageReply(message, isMe, messageEnum));
   }
 
   @override
@@ -72,7 +84,9 @@ class _ChatListState extends ConsumerState<ChatList> {
                   message: messageData.text,
                   date: timeSent,
                   type: messageData.type,
-                  onLeftSwipe: () {},
+                  onLeftSwipe: () {
+                    onMessageSwipe(messageData.text, true, messageData.type);
+                  },
                   repliedMessageType: messageData.repliedMessageType,
                   repliedText: messageData.repliedMessage,
                   username: messageData.repliedTo,
@@ -82,6 +96,12 @@ class _ChatListState extends ConsumerState<ChatList> {
                 message: messageData.text,
                 date: timeSent,
                 type: messageData.type,
+                onRightSwipe: () {
+                  onMessageSwipe(messageData.text, false, messageData.type);
+                },
+                repliedMessageType: messageData.repliedMessageType,
+                repliedText: messageData.repliedMessage,
+                username: messageData.repliedTo,
               );
             },
           );
