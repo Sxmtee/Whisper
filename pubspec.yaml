@@ -54,7 +54,7 @@ dependencies:
   cached_network_image: ^3.2.3
   cached_video_player: ^2.0.3
   emoji_picker_flutter: ^1.5.2
-  enough_giphy_flutter: ^0.3.0
+  enough_giphy_flutter:
   flutter_launcher_icons: ^0.11.0
   swipe_to: ^1.0.2
 
@@ -63,7 +63,6 @@ flutter_icons:
   ios: true
   image_path: "assets/Images/whisper4.jpg"
   min_sdk_android: 21
-
 
 dev_dependencies:
   flutter_test:

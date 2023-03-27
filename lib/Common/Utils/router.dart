@@ -1,8 +1,12 @@
+import 'dart:io';
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
+import 'package:whisper/Features/Views/screens/confirm_status.dart';
 import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
 import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
 
@@ -32,6 +36,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => MobileChatScreen(
                 name: name,
                 uid: uid,
+              ));
+    case ConfirmStatus.routeName:
+      final file = settings.arguments as File;
+      return MaterialPageRoute(
+          builder: (context) => ConfirmStatus(
+                file: file,
               ));
     default:
       return MaterialPageRoute(

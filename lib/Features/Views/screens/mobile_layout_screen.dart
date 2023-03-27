@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
+import 'package:whisper/Common/Utils/pickfile.dart';
 import 'package:whisper/Common/Widgets/chatWidgets/contacts_list.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
+import 'package:whisper/Features/Views/screens/confirm_status.dart';
 import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
+import 'package:whisper/Features/Views/screens/status_screen.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);
@@ -13,10 +18,12 @@ class MobileLayoutScreen extends ConsumerStatefulWidget {
 }
 
 class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, TickerProviderStateMixin {
+  late TabController tabController;
   @override
   void initState() {
     super.initState();
+    tabController = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -68,15 +75,16 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               onPressed: () {},
             ),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
+            controller: tabController,
             indicatorColor: AppColors.primaryColor,
             indicatorWeight: 4,
             labelColor: AppColors.primaryColor,
             unselectedLabelColor: Colors.grey,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: 'WHISPERS',
               ),
@@ -89,10 +97,21 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             ],
           ),
         ),
-        body: const ContactsList(),
+        body: TabBarView(
+            controller: tabController,
+            children: const [ContactsList(), StatusScreen(), Text("CALLS")]),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, SelectContactScreen.routeName);
+          onPressed: () async {
+            if (tabController.index == 0) {
+              Navigator.pushNamed(context, SelectContactScreen.routeName);
+            } else {
+              File? pickedImage = await pickImageFromGallery(context);
+              if (pickedImage != null) {
+                // ignore: use_build_context_synchronously
+                Navigator.pushNamed(context, ConfirmStatus.routeName,
+                    arguments: pickedImage);
+              }
+            }
           },
           backgroundColor: AppColors.primaryColor,
           child: const Icon(
