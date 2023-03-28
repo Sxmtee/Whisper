@@ -38,12 +38,14 @@ class SelectContactRepo {
 
         if (selectedPhoneNum == userData.phoneNumber) {
           isFound = true;
+          // ignore: use_build_context_synchronously
           Navigator.pushNamed(context, MobileChatScreen.routeName,
               arguments: {"name": userData.name, "uid": userData.uid});
         }
       }
 
       if (!isFound) {
+        // ignore: use_build_context_synchronously
         showSnackBar(context, "This Contact isn't a Whispmate");
       }
     } catch (e) {

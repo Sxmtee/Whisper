@@ -9,6 +9,8 @@ import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
 import 'package:whisper/Features/Views/screens/confirm_status.dart';
 import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
 import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
+import 'package:whisper/Features/Views/screens/status_screen2.dart';
+import 'package:whisper/Models/statusModel.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -43,6 +45,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => ConfirmStatus(
                 file: file,
               ));
+    case StatusScreen2.routeName:
+      final status = settings.arguments as Status;
+      return MaterialPageRoute(
+          builder: (context) => StatusScreen2(status: status));
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
