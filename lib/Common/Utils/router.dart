@@ -1,15 +1,14 @@
 import 'dart:io';
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
-import 'package:whisper/Features/Views/screens/confirm_status.dart';
-import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
-import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
-import 'package:whisper/Features/Views/screens/status_screen2.dart';
+import 'package:whisper/Features/Status/screens/confirm_status.dart';
+import 'package:whisper/Features/Status/screens/status_screen2.dart';
+import 'package:whisper/Features/Chat/screen/mobile_chat_screen.dart';
+import 'package:whisper/Features/SelectContact/screens/select_contact_screen.dart';
 import 'package:whisper/Models/statusModel.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {

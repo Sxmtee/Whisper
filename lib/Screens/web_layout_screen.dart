@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/chat_list.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/contacts_list.dart';
 import 'package:whisper/Common/Widgets/webWidgets/web_chat_appbar.dart';
 import 'package:whisper/Common/Widgets/webWidgets/web_profile_bar.dart';
 import 'package:whisper/Common/Widgets/webWidgets/web_search_bar.dart';
+import 'package:whisper/Features/Chat/widgets/chat_list.dart';
+import 'package:whisper/Features/Chat/widgets/contacts_list.dart';
 
 class WebLayoutScreen extends StatelessWidget {
   const WebLayoutScreen({Key? key}) : super(key: key);
@@ -16,10 +16,10 @@ class WebLayoutScreen extends StatelessWidget {
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: const [
+                children: [
                   WebProfileBar(),
                   WebSearchBar(),
                   ContactsList(),

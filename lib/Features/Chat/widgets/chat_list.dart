@@ -5,13 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
-import 'package:whisper/Common/Providers/message_reply_provider.dart';
+import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/my_message_card.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/sender_message_card.dart';
-import 'package:whisper/Features/Views/controllers/chat_controller.dart';
+import 'package:whisper/Features/Chat/controller/chat_controller.dart';
+import 'package:whisper/Features/Chat/widgets/my_message_card.dart';
+import 'package:whisper/Features/Chat/widgets/sender_message_card.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String receiverUserId;

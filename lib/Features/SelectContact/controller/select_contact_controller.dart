@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whisper/Features/Views/repositories/select_contact_repo.dart';
+import 'package:whisper/Features/SelectContact/repo/select_contact_repo.dart';
 
 final getContactsProvider = FutureProvider((ref) {
   final selectContactRepo = ref.watch(selectContactRepoProvider);

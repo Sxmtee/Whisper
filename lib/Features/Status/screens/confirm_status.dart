@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Features/Views/controllers/status_controller.dart';
+import 'package:whisper/Features/Status/controller/status_controller.dart';
 
 class ConfirmStatus extends ConsumerWidget {
   static const String routeName = "/confirm-status";

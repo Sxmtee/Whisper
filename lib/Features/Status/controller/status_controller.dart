@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
-import 'package:whisper/Features/Views/repositories/status_repo.dart';
+import 'package:whisper/Features/Status/repo/status_repo.dart';
 import 'package:whisper/Models/statusModel.dart';
 
 final statusControllerProvider = Provider((ref) {

@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
-import 'package:whisper/Common/Providers/message_reply_provider.dart';
+import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
 import 'package:whisper/Features/Auth/repositories/common_firebase_storage_repo.dart';
 import 'package:whisper/Models/chatcontactModel.dart';

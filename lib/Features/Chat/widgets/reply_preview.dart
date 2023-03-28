@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whisper/Common/Providers/message_reply_provider.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/display_message_type.dart';
+import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
+import 'package:whisper/Features/Chat/widgets/display_message_type.dart';
 
 class ReplyPreview extends ConsumerWidget {
   const ReplyPreview({super.key});

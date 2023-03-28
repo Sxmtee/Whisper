@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
-import 'package:whisper/Features/Views/controllers/status_controller.dart';
-import 'package:whisper/Features/Views/screens/status_screen2.dart';
+import 'package:whisper/Features/Status/controller/status_controller.dart';
+import 'package:whisper/Features/Status/screens/status_screen2.dart';
 import 'package:whisper/Models/statusModel.dart';
 
 class StatusScreen extends ConsumerWidget {

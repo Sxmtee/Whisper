@@ -7,11 +7,11 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
-import 'package:whisper/Common/Providers/message_reply_provider.dart';
+import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/pickfile.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/reply_preview.dart';
-import 'package:whisper/Features/Views/controllers/chat_controller.dart';
+import 'package:whisper/Features/Chat/controller/chat_controller.dart';
+import 'package:whisper/Features/Chat/widgets/reply_preview.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
   final String receiverUserId;

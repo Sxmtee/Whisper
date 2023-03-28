@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
-import 'package:whisper/Features/Views/controllers/select_contact_controller.dart';
+import 'package:whisper/Features/SelectContact/controller/select_contact_controller.dart';
 
 class SelectContactScreen extends ConsumerWidget {
   static const String routeName = "/select-contact";

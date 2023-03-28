@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/pickfile.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/contacts_list.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
-import 'package:whisper/Features/Views/screens/confirm_status.dart';
-import 'package:whisper/Features/Views/screens/select_contact_screen.dart';
-import 'package:whisper/Features/Views/screens/status_screen.dart';
+import 'package:whisper/Features/Chat/widgets/contacts_list.dart';
+import 'package:whisper/Features/SelectContact/screens/select_contact_screen.dart';
+import 'package:whisper/Features/Status/screens/confirm_status.dart';
+import 'package:whisper/Features/Status/screens/status_screen.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
   const MobileLayoutScreen({Key? key}) : super(key: key);

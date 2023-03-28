@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipe_to/swipe_to.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
 import 'package:whisper/Common/Utils/colors.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/display_message_type.dart';
+import 'package:whisper/Features/Chat/widgets/display_message_type.dart';
 
 class SenderMessageCard extends StatelessWidget {
   final String message;

@@ -6,8 +6,8 @@ import 'package:whisper/Common/Utils/router.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Landing/landing_screen.dart';
-import 'package:whisper/Features/Views/screens/mobile_layout_screen.dart';
-import 'package:whisper/Features/Views/screens/web_layout_screen.dart';
+import 'package:whisper/Screens/mobile_layout_screen.dart';
+import 'package:whisper/Screens/web_layout_screen.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/responsive_layout.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
-import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
+import 'package:whisper/Features/Chat/screen/mobile_chat_screen.dart';
 import 'package:whisper/Models/userModel.dart';
 
 final selectContactRepoProvider =

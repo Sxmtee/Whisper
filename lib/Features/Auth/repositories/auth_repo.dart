@@ -9,7 +9,7 @@ import 'package:whisper/Features/Auth/repositories/common_firebase_storage_repo.
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
 import 'package:whisper/Models/userModel.dart';
-import 'package:whisper/Features/Views/screens/mobile_layout_screen.dart';
+import 'package:whisper/Screens/mobile_layout_screen.dart';
 
 final authRepoProvider = Provider((ref) => AuthRepo(
     auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance));

@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
-import 'package:whisper/Common/Providers/message_reply_provider.dart';
+import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
-import 'package:whisper/Features/Views/repositories/chat_repo.dart';
+import 'package:whisper/Features/Chat/repo/chat_repo.dart';
 import 'package:whisper/Models/chatcontactModel.dart';
 import 'package:whisper/Models/messageModel.dart';
 

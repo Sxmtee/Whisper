@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:whisper/Common/Enums/message_enum.dart';
-import 'package:whisper/Common/Widgets/chatWidgets/video_player_item.dart';
+import 'package:whisper/Features/Chat/widgets/video_player_item.dart';
 
 class DisplayMessageType extends StatelessWidget {
   final String message;

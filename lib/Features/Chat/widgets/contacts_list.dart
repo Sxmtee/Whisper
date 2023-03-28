@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:whisper/Common/Utils/loader.dart';
 import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
-import 'package:whisper/Features/Views/controllers/chat_controller.dart';
-import 'package:whisper/Features/Views/screens/mobile_chat_screen.dart';
+import 'package:whisper/Features/Chat/controller/chat_controller.dart';
+import 'package:whisper/Features/Chat/screen/mobile_chat_screen.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Models/chatcontactModel.dart';
 
