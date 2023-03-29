@@ -5,6 +5,7 @@ import 'package:whisper/Common/Widgets/generalWidgets/error_screen.dart';
 import 'package:whisper/Features/Auth/screens/login_screen.dart';
 import 'package:whisper/Features/Auth/screens/otp_screen.dart';
 import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
+import 'package:whisper/Features/Group/screens/create_group_screen.dart';
 import 'package:whisper/Features/Status/screens/confirm_status.dart';
 import 'package:whisper/Features/Status/screens/status_screen2.dart';
 import 'package:whisper/Features/Chat/screen/mobile_chat_screen.dart';
@@ -48,6 +49,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       final status = settings.arguments as Status;
       return MaterialPageRoute(
           builder: (context) => StatusScreen2(status: status));
+    case CreateGroupScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const CreateGroupScreen());
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(

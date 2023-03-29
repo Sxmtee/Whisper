@@ -6,6 +6,7 @@ import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/pickfile.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Chat/widgets/contacts_list.dart';
+import 'package:whisper/Features/Group/screens/create_group_screen.dart';
 import 'package:whisper/Features/SelectContact/screens/select_contact_screen.dart';
 import 'package:whisper/Features/Status/screens/confirm_status.dart';
 import 'package:whisper/Features/Status/screens/status_screen.dart';
@@ -70,10 +71,17 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               icon: const Icon(Icons.search, color: Colors.grey),
               onPressed: () {},
             ),
-            IconButton(
-              icon: const Icon(Icons.more_vert, color: Colors.grey),
-              onPressed: () {},
-            ),
+            PopupMenuButton(
+                icon: const Icon(
+                  Icons.more_vert,
+                  color: Colors.grey,
+                ),
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                          child: const Text("Create Group"),
+                          onTap: () => Future(() => Navigator.pushNamed(
+                              context, CreateGroupScreen.routeName)))
+                    ])
           ],
           bottom: TabBar(
             controller: tabController,
