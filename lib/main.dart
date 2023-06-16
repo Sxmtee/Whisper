@@ -23,25 +23,25 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Whisper',
-        theme: ThemeData.dark().copyWith(
-          primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: AppColors.backgroundColor,
-          appBarTheme: const AppBarTheme(color: AppColors.appBarColor),
-          inputDecorationTheme: const InputDecorationTheme(
-            filled: true,
-            fillColor: Colors.transparent,
-            errorStyle: TextStyle(height: 0),
-            border: defaultInputBorder,
-            enabledBorder: defaultInputBorder,
-            focusedBorder: defaultInputBorder,
-            errorBorder: defaultInputBorder,
-          ),
+      debugShowCheckedModeBanner: false,
+      title: 'Whisper',
+      theme: ThemeData.dark().copyWith(
+        primaryColor: AppColors.primaryColor,
+        scaffoldBackgroundColor: AppColors.backgroundColor,
+        appBarTheme: const AppBarTheme(color: AppColors.appBarColor),
+        inputDecorationTheme: const InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.transparent,
+          errorStyle: TextStyle(height: 0),
+          border: defaultInputBorder,
+          enabledBorder: defaultInputBorder,
+          focusedBorder: defaultInputBorder,
+          errorBorder: defaultInputBorder,
         ),
-        onGenerateRoute: (settings) => generateRoute(settings),
-        home: ref.watch(userDataAuthProvider).when(
-            data: ((user) {
+      ),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: ref.watch(userDataAuthProvider).when(
+            data: (user) {
               if (user == null) {
                 return const LandingScreen();
               }
@@ -49,14 +49,16 @@ class MyApp extends ConsumerWidget {
                 mobileScreenLayout: MobileLayoutScreen(),
                 webScreenLayout: WebLayoutScreen(),
               );
-            }),
-            error: ((error, stackTrace) {
+            },
+            error: (error, stackTrace) {
               return ErrorScreen(error: error.toString());
-            }),
-            loading: (() => const Loader(
-                  radius: 60,
-                  color: AppColors.primaryColor,
-                ))));
+            },
+            loading: () => const Loader(
+              radius: 60,
+              color: AppColors.primaryColor,
+            ),
+          ),
+    );
   }
 }
 

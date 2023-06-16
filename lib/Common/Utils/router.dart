@@ -26,31 +26,43 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
       );
     case UserInfoScreen.routeName:
-      return MaterialPageRoute(builder: (context) => const UserInfoScreen());
+      return MaterialPageRoute(
+        builder: (context) => const UserInfoScreen(),
+      );
     case SelectContactScreen.routeName:
       return MaterialPageRoute(
-          builder: (context) => const SelectContactScreen());
+        builder: (context) => const SelectContactScreen(),
+      );
     case MobileChatScreen.routeName:
       final arguments = settings.arguments as Map<String, dynamic>;
       final name = arguments["name"];
       final uid = arguments["uid"];
+      final isGroupChat = arguments["isGroupChat"];
       return MaterialPageRoute(
-          builder: (context) => MobileChatScreen(
-                name: name,
-                uid: uid,
-              ));
+        builder: (context) => MobileChatScreen(
+          name: name,
+          uid: uid,
+          isGroupChat: isGroupChat,
+        ),
+      );
     case ConfirmStatus.routeName:
       final file = settings.arguments as File;
       return MaterialPageRoute(
-          builder: (context) => ConfirmStatus(
-                file: file,
-              ));
+        builder: (context) => ConfirmStatus(
+          file: file,
+        ),
+      );
     case StatusScreen2.routeName:
       final status = settings.arguments as Status;
       return MaterialPageRoute(
-          builder: (context) => StatusScreen2(status: status));
+        builder: (context) => StatusScreen2(
+          status: status,
+        ),
+      );
     case CreateGroupScreen.routeName:
-      return MaterialPageRoute(builder: (context) => const CreateGroupScreen());
+      return MaterialPageRoute(
+        builder: (context) => const CreateGroupScreen(),
+      );
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(

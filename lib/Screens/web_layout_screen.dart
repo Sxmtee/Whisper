@@ -11,7 +11,7 @@ class WebLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var chatBarMessage;
+    // var chatBarMessage;
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,

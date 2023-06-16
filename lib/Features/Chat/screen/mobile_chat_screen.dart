@@ -11,8 +11,13 @@ class MobileChatScreen extends ConsumerWidget {
   static const String routeName = "/mobile-chat-screen";
   final String name;
   final String uid;
-  const MobileChatScreen({Key? key, required this.name, required this.uid})
-      : super(key: key);
+  final bool isGroupChat;
+  const MobileChatScreen({
+    Key? key,
+    required this.name,
+    required this.uid,
+    required this.isGroupChat,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,22 +25,28 @@ class MobileChatScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: AppColors.appBarColor,
         title: StreamBuilder<UserModel>(
-            stream: ref.read(authControllerProvider).userDataById(uid),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Loader(radius: 20, color: AppColors.appBarColor);
-              }
-              return Column(
-                children: [
-                  Text(name),
-                  Text(
-                    snapshot.data!.isOnline ? "confidant" : "snitch",
-                    style: const TextStyle(
-                        fontSize: 13, fontWeight: FontWeight.normal),
-                  )
-                ],
+          stream: ref.read(authControllerProvider).userDataById(uid),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Loader(
+                radius: 20,
+                color: AppColors.appBarColor,
               );
-            }),
+            }
+            return Column(
+              children: [
+                Text(name),
+                Text(
+                  snapshot.data!.isOnline ? "confidant" : "snitch",
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.normal,
+                  ),
+                )
+              ],
+            );
+          },
+        ),
         centerTitle: false,
         actions: [
           IconButton(

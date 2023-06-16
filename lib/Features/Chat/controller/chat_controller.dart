@@ -7,6 +7,7 @@ import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Chat/repo/chat_repo.dart';
 import 'package:whisper/Models/chatcontactModel.dart';
+import 'package:whisper/Models/groupModel.dart';
 import 'package:whisper/Models/messageModel.dart';
 
 final chatControllerProvider = Provider(
@@ -24,6 +25,10 @@ class ChatController {
 
   Stream<List<ChatContactModel>> chatContacts() {
     return chatRepository.getChatContacts();
+  }
+
+  Stream<List<GroupModel>> chatGroups() {
+    return chatRepository.getChatGroups();
   }
 
   Stream<List<MessageModel>> getChatStream(String receiverUserId) {

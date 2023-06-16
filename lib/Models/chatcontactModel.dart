@@ -5,12 +5,13 @@ class ChatContactModel {
   final DateTime timeSent;
   final String lastMessage;
 
-  ChatContactModel(
-      {required this.name,
-      required this.profilePic,
-      required this.contactId,
-      required this.timeSent,
-      required this.lastMessage});
+  ChatContactModel({
+    required this.name,
+    required this.profilePic,
+    required this.contactId,
+    required this.timeSent,
+    required this.lastMessage,
+  });
 
   Map<String, dynamic> toMap() {
     return {

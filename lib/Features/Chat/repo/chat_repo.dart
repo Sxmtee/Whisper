@@ -10,11 +10,14 @@ import 'package:whisper/Features/Chat/repo/message_reply_provider.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
 import 'package:whisper/Features/Auth/repositories/common_firebase_storage_repo.dart';
 import 'package:whisper/Models/chatcontactModel.dart';
+import 'package:whisper/Models/groupModel.dart';
 import 'package:whisper/Models/messageModel.dart';
 import 'package:whisper/Models/userModel.dart';
 
 final chatRepoProvider = Provider((ref) => ChatRepository(
-    firestore: FirebaseFirestore.instance, auth: FirebaseAuth.instance));
+      firestore: FirebaseFirestore.instance,
+      auth: FirebaseAuth.instance,
+    ));
 
 class ChatRepository {
   final FirebaseFirestore firestore;
@@ -46,6 +49,19 @@ class ChatRepository {
             lastMessage: chatContact.lastMessage));
       }
       return contacts;
+    });
+  }
+
+  Stream<List<GroupModel>> getChatGroups() {
+    return firestore.collection("groups").snapshots().map((event) {
+      List<GroupModel> groups = [];
+      for (var document in event.docs) {
+        var group = GroupModel.fromMap(document.data());
+        if (group.membersUid.contains(auth.currentUser!.uid)) {
+          groups.add(group);
+        }
+      }
+      return groups;
     });
   }
 

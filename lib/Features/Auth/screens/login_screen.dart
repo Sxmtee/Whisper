@@ -63,10 +63,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               height: 10,
             ),
             TextButton(
-                onPressed: (() {
-                  pickCountry();
-                }),
-                child: const Text("Pick Your Country")),
+              onPressed: () {
+                pickCountry();
+              },
+              child: const Text("Pick Your Country"),
+            ),
             const SizedBox(
               height: 5,
             ),

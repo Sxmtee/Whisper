@@ -44,6 +44,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
       case AppLifecycleState.inactive:
       case AppLifecycleState.detached:
       case AppLifecycleState.paused:
+      case AppLifecycleState.hidden:
         ref.read(authControllerProvider).setUserState(false);
         break;
     }
@@ -68,20 +69,29 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.search, color: Colors.grey),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.grey,
+              ),
               onPressed: () {},
             ),
             PopupMenuButton(
-                icon: const Icon(
-                  Icons.more_vert,
-                  color: Colors.grey,
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.grey,
+              ),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: const Text("Create Group"),
+                  onTap: () => Future(
+                    () => Navigator.pushNamed(
+                      context,
+                      CreateGroupScreen.routeName,
+                    ),
+                  ),
                 ),
-                itemBuilder: (context) => [
-                      PopupMenuItem(
-                          child: const Text("Create Group"),
-                          onTap: () => Future(() => Navigator.pushNamed(
-                              context, CreateGroupScreen.routeName)))
-                    ])
+              ],
+            )
           ],
           bottom: TabBar(
             controller: tabController,
@@ -106,8 +116,13 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           ),
         ),
         body: TabBarView(
-            controller: tabController,
-            children: const [ContactsList(), StatusScreen(), Text("CALLS")]),
+          controller: tabController,
+          children: const [
+            ContactsList(),
+            StatusScreen(),
+            Text("CALLS"),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             if (tabController.index == 0) {
@@ -116,8 +131,11 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
               File? pickedImage = await pickImageFromGallery(context);
               if (pickedImage != null) {
                 // ignore: use_build_context_synchronously
-                Navigator.pushNamed(context, ConfirmStatus.routeName,
-                    arguments: pickedImage);
+                Navigator.pushNamed(
+                  context,
+                  ConfirmStatus.routeName,
+                  arguments: pickedImage,
+                );
               }
             }
           },

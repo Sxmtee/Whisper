@@ -23,8 +23,11 @@ class GroupRepository {
   final FirebaseAuth auth;
   final ProviderRef ref;
 
-  GroupRepository(
-      {required this.auth, required this.firestore, required this.ref});
+  GroupRepository({
+    required this.auth,
+    required this.firestore,
+    required this.ref,
+  });
 
   void createGroup(BuildContext context, String name, File profilePic,
       List<Contact> selectedContact) async {
@@ -33,13 +36,17 @@ class GroupRepository {
       for (int i = 0; i < selectedContact.length; i++) {
         var userCollection = await firestore
             .collection("users")
-            .where("phoneNumber",
-                isEqualTo:
-                    selectedContact[i].phones[0].number.replaceAll(" ", ""))
-            .where("createdAt",
-                isGreaterThan: DateTime.now()
-                    .subtract(const Duration(hours: 24))
-                    .millisecondsSinceEpoch)
+            .where(
+              "phoneNumber",
+              isEqualTo:
+                  selectedContact[i].phones[0].number.replaceAll(" ", ""),
+            )
+            .where(
+              "createdAt",
+              isGreaterThan: DateTime.now()
+                  .subtract(const Duration(hours: 24))
+                  .millisecondsSinceEpoch,
+            )
             .get();
         if (userCollection.docs.isNotEmpty && userCollection.docs[0].exists) {
           uids.add(userCollection.docs[0].data()["uid"]);
@@ -52,12 +59,14 @@ class GroupRepository {
           .storeFileToFirebase("group/$groupId", profilePic);
 
       model.GroupModel group = model.GroupModel(
-          name: name,
-          senderId: auth.currentUser!.uid,
-          groupPic: profileUrl,
-          lastMessage: "",
-          membersUid: [auth.currentUser!.uid, ...uids],
-          groupId: groupId);
+        name: name,
+        senderId: auth.currentUser!.uid,
+        groupPic: profileUrl,
+        lastMessage: "",
+        membersUid: [auth.currentUser!.uid, ...uids],
+        groupId: groupId,
+        timeSent: DateTime.now(),
+      );
 
       await firestore.collection("groups").doc(groupId).set(group.toMap());
     } catch (e) {
