@@ -43,7 +43,8 @@ class DisplayMessageType extends StatelessWidget {
                       }
                     }),
                     icon: Icon(
-                        isPlaying ? Icons.pause_circle : Icons.play_circle));
+                      isPlaying ? Icons.pause_circle : Icons.play_circle,
+                    ));
               })
             : type == MessageEnum.video
                 ? VideoPlayerItem(videoUrl: message)

@@ -12,18 +12,24 @@ import 'package:whisper/Features/Auth/repositories/common_firebase_storage_repo.
 import 'package:whisper/Models/statusModel.dart';
 import 'package:whisper/Models/userModel.dart';
 
-final statusRepositoryProvider = Provider((ref) => StatusRepository(
+final statusRepositoryProvider = Provider(
+  (ref) => StatusRepository(
     firestore: FirebaseFirestore.instance,
     auth: FirebaseAuth.instance,
-    ref: ref));
+    ref: ref,
+  ),
+);
 
 class StatusRepository {
   final FirebaseFirestore firestore;
   final FirebaseAuth auth;
   final ProviderRef ref;
 
-  StatusRepository(
-      {required this.firestore, required this.auth, required this.ref});
+  StatusRepository({
+    required this.firestore,
+    required this.auth,
+    required this.ref,
+  });
 
   void uploadStatus({
     required String username,

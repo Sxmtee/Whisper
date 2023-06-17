@@ -17,9 +17,11 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   void initState() {
     super.initState();
     videoPlayerController = CachedVideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((value) {
-        videoPlayerController.setVolume(1);
-      });
+      ..initialize().then(
+        (value) {
+          videoPlayerController.setVolume(1);
+        },
+      );
   }
 
   @override
@@ -36,19 +38,21 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         children: [
           CachedVideoPlayer(videoPlayerController),
           Align(
-              alignment: Alignment.center,
-              child: IconButton(
-                  onPressed: (() {
-                    if (isPlay) {
-                      videoPlayerController.pause();
-                    } else {
-                      videoPlayerController.play();
-                    }
-                    setState(() {
-                      isPlay = !isPlay;
-                    });
-                  }),
-                  icon: Icon(isPlay ? Icons.pause_circle : Icons.play_circle)))
+            alignment: Alignment.center,
+            child: IconButton(
+              onPressed: (() {
+                if (isPlay) {
+                  videoPlayerController.pause();
+                } else {
+                  videoPlayerController.play();
+                }
+                setState(() {
+                  isPlay = !isPlay;
+                });
+              }),
+              icon: Icon(isPlay ? Icons.pause_circle : Icons.play_circle),
+            ),
+          ),
         ],
       ),
     );

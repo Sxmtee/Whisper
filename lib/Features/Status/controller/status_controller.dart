@@ -6,26 +6,37 @@ import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 import 'package:whisper/Features/Status/repo/status_repo.dart';
 import 'package:whisper/Models/statusModel.dart';
 
-final statusControllerProvider = Provider((ref) {
-  final statusRepository = ref.read(statusRepositoryProvider);
-  return StatusController(statusRepository: statusRepository, ref: ref);
-});
+final statusControllerProvider = Provider(
+  (ref) {
+    final statusRepository = ref.read(statusRepositoryProvider);
+    return StatusController(
+      statusRepository: statusRepository,
+      ref: ref,
+    );
+  },
+);
 
 class StatusController {
   final StatusRepository statusRepository;
   final ProviderRef ref;
 
-  StatusController({required this.statusRepository, required this.ref});
+  StatusController({
+    required this.statusRepository,
+    required this.ref,
+  });
 
   void addStatus(File file, BuildContext context) {
-    ref.watch(userDataAuthProvider).whenData((value) {
-      statusRepository.uploadStatus(
+    ref.watch(userDataAuthProvider).whenData(
+      (value) {
+        statusRepository.uploadStatus(
           username: value!.name,
           profilePic: value.profilePic,
           phoneNumber: value.phoneNumber,
           statusImage: file,
-          context: context);
-    });
+          context: context,
+        );
+      },
+    );
   }
 
   Future<List<Status>> getStatus(BuildContext context) async {

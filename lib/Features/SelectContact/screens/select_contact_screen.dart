@@ -11,7 +11,10 @@ class SelectContactScreen extends ConsumerWidget {
   const SelectContactScreen({super.key});
 
   void selectContact(
-      WidgetRef ref, BuildContext context, Contact selectedContact) {
+    WidgetRef ref,
+    BuildContext context,
+    Contact selectedContact,
+  ) {
     ref
         .read(selectedContactControllerProvider)
         .selectedContact(selectedContact, context);
@@ -24,43 +27,55 @@ class SelectContactScreen extends ConsumerWidget {
         title: const Text("Select Whispermates"),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (() {}), icon: const Icon(Icons.search)),
           IconButton(
-              onPressed: (() {}), icon: const Icon(Icons.more_vert_outlined))
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert_outlined),
+          )
         ],
       ),
-      body: ref.watch(getContactsProvider).when(data: ((contactList) {
-        return ListView.builder(
-          itemCount: contactList.length,
-          itemBuilder: (context, index) {
-            final contact = contactList[index];
-            return GestureDetector(
-              onTap: () {
-                selectContact(ref, context, contact);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: ListTile(
-                  title: Text(
-                    contact.displayName,
-                    style: const TextStyle(fontSize: 18),
+      body: ref.watch(getContactsProvider).when(
+        data: ((contactList) {
+          return ListView.builder(
+            itemCount: contactList.length,
+            itemBuilder: (context, index) {
+              final contact = contactList[index];
+              return GestureDetector(
+                onTap: () {
+                  selectContact(ref, context, contact);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: ListTile(
+                    title: Text(
+                      contact.displayName,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    leading: contact.photo == null
+                        ? null
+                        : CircleAvatar(
+                            backgroundImage: MemoryImage(contact.photo!),
+                            radius: 30,
+                          ),
                   ),
-                  leading: contact.photo == null
-                      ? null
-                      : CircleAvatar(
-                          backgroundImage: MemoryImage(contact.photo!),
-                          radius: 30,
-                        ),
                 ),
-              ),
-            );
-          },
-        );
-      }), error: ((error, stackTrace) {
-        return ErrorScreen(error: error.toString());
-      }), loading: () {
-        return const Loader(radius: 60, color: AppColors.primaryColor);
-      }),
+              );
+            },
+          );
+        }),
+        error: ((error, stackTrace) {
+          return ErrorScreen(error: error.toString());
+        }),
+        loading: () {
+          return const Loader(
+            radius: 60,
+            color: AppColors.primaryColor,
+          );
+        },
+      ),
     );
   }
 }

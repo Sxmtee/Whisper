@@ -24,7 +24,10 @@ class LandingScreen extends StatelessWidget {
             ),
             const Text(
               "Welcome to Whisper",
-              style: TextStyle(fontSize: 33, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 33,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             SizedBox(
               height: size.height / 9,

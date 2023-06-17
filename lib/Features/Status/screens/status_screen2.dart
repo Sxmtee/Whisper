@@ -18,8 +18,12 @@ class _StatusScreen2State extends State<StatusScreen2> {
 
   void initStoryPageItems() {
     for (int i = 0; i < widget.status.photoUrl.length; i++) {
-      storyItems.add(StoryItem.pageImage(
-          url: widget.status.photoUrl[i], controller: storyController));
+      storyItems.add(
+        StoryItem.pageImage(
+          url: widget.status.photoUrl[i],
+          controller: storyController,
+        ),
+      );
     }
   }
 

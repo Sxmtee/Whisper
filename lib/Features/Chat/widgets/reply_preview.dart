@@ -17,18 +17,22 @@ class ReplyPreview extends ConsumerWidget {
       width: 350,
       padding: const EdgeInsets.all(8.0),
       decoration: const BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+        color: Colors.transparent,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
       child: Column(
         children: [
           Row(
             children: [
               Expanded(
-                  child: Text(
-                messageReply!.isMe ? "Me" : "Opposite",
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              )),
+                child: Text(
+                  messageReply!.isMe ? "Me" : "Opposite",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
               GestureDetector(
                 onTap: () {
                   cancelReply(ref);
@@ -44,7 +48,9 @@ class ReplyPreview extends ConsumerWidget {
             height: 8,
           ),
           DisplayMessageType(
-              message: messageReply.message, type: messageReply.messageEnum)
+            message: messageReply.message,
+            type: messageReply.messageEnum,
+          )
         ],
       ),
     );

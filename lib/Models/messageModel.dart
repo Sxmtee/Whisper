@@ -12,17 +12,18 @@ class MessageModel {
   final String repliedTo;
   final MessageEnum repliedMessageType;
 
-  MessageModel(
-      {required this.senderId,
-      required this.receiverId,
-      required this.text,
-      required this.type,
-      required this.timeSent,
-      required this.messageId,
-      required this.isSeen,
-      required this.repliedMessage,
-      required this.repliedTo,
-      required this.repliedMessageType});
+  MessageModel({
+    required this.senderId,
+    required this.receiverId,
+    required this.text,
+    required this.type,
+    required this.timeSent,
+    required this.messageId,
+    required this.isSeen,
+    required this.repliedMessage,
+    required this.repliedTo,
+    required this.repliedMessageType,
+  });
 
   Map<String, dynamic> toMap() {
     return {

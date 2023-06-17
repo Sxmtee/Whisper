@@ -6,7 +6,11 @@ class MessageReply {
   final bool isMe;
   final MessageEnum messageEnum;
 
-  MessageReply(this.message, this.isMe, this.messageEnum);
+  MessageReply(
+    this.message,
+    this.isMe,
+    this.messageEnum,
+  );
 }
 
 final messageReplyProvider = StateProvider<MessageReply?>((ref) => null);

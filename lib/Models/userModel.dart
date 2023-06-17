@@ -6,13 +6,14 @@ class UserModel {
   final String phoneNumber;
   final List<String> groupId;
 
-  UserModel(
-      {required this.name,
-      required this.uid,
-      required this.profilePic,
-      required this.isOnline,
-      required this.phoneNumber,
-      required this.groupId});
+  UserModel({
+    required this.name,
+    required this.uid,
+    required this.profilePic,
+    required this.isOnline,
+    required this.phoneNumber,
+    required this.groupId,
+  });
 
   Map<String, dynamic> toMap() {
     return {

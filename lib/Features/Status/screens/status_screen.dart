@@ -25,8 +25,11 @@ class StatusScreen extends ConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, StatusScreen2.routeName,
-                        arguments: statusData);
+                    Navigator.pushNamed(
+                      context,
+                      StatusScreen2.routeName,
+                      arguments: statusData,
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
@@ -43,7 +46,10 @@ class StatusScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const Divider(color: AppColors.dividerColor, indent: 85),
+                const Divider(
+                  color: AppColors.dividerColor,
+                  indent: 85,
+                ),
               ],
             );
           },

@@ -14,16 +14,21 @@ import 'package:whisper/Models/groupModel.dart';
 import 'package:whisper/Models/messageModel.dart';
 import 'package:whisper/Models/userModel.dart';
 
-final chatRepoProvider = Provider((ref) => ChatRepository(
-      firestore: FirebaseFirestore.instance,
-      auth: FirebaseAuth.instance,
-    ));
+final chatRepoProvider = Provider(
+  (ref) => ChatRepository(
+    firestore: FirebaseFirestore.instance,
+    auth: FirebaseAuth.instance,
+  ),
+);
 
 class ChatRepository {
   final FirebaseFirestore firestore;
   final FirebaseAuth auth;
 
-  ChatRepository({required this.firestore, required this.auth});
+  ChatRepository({
+    required this.firestore,
+    required this.auth,
+  });
 
   Stream<List<ChatContactModel>> getChatContacts() {
     return firestore
@@ -31,25 +36,30 @@ class ChatRepository {
         .doc(auth.currentUser!.uid)
         .collection("chats")
         .snapshots()
-        .asyncMap((event) async {
-      List<ChatContactModel> contacts = [];
-      for (var document in event.docs) {
-        var chatContact = ChatContactModel.fromMap(document.data());
-        var userData = await firestore
-            .collection("users")
-            .doc(chatContact.contactId)
-            .get();
-        var user = UserModel.fromMap(userData.data()!);
+        .asyncMap(
+      (event) async {
+        List<ChatContactModel> contacts = [];
+        for (var document in event.docs) {
+          var chatContact = ChatContactModel.fromMap(document.data());
+          var userData = await firestore
+              .collection("users")
+              .doc(chatContact.contactId)
+              .get();
+          var user = UserModel.fromMap(userData.data()!);
 
-        contacts.add(ChatContactModel(
-            name: user.name,
-            profilePic: user.profilePic,
-            contactId: chatContact.contactId,
-            timeSent: chatContact.timeSent,
-            lastMessage: chatContact.lastMessage));
-      }
-      return contacts;
-    });
+          contacts.add(
+            ChatContactModel(
+              name: user.name,
+              profilePic: user.profilePic,
+              contactId: chatContact.contactId,
+              timeSent: chatContact.timeSent,
+              lastMessage: chatContact.lastMessage,
+            ),
+          );
+        }
+        return contacts;
+      },
+    );
   }
 
   Stream<List<GroupModel>> getChatGroups() {
@@ -129,11 +139,12 @@ class ChatRepository {
           .set(recieverChatContact.toMap());
       //users -> current user id => chats -> receiver user id -> set data
       var senderChatContact = ChatContactModel(
-          name: receiverUserData!.name,
-          profilePic: receiverUserData.profilePic,
-          contactId: receiverUserData.uid,
-          timeSent: timeSent,
-          lastMessage: text);
+        name: receiverUserData!.name,
+        profilePic: receiverUserData.profilePic,
+        contactId: receiverUserData.uid,
+        timeSent: timeSent,
+        lastMessage: text,
+      );
       await firestore
           .collection("users")
           .doc(auth.currentUser!.uid)

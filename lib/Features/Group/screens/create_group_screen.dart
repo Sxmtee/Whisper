@@ -30,7 +30,9 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
             context,
             controller.text.trim(),
             image!,
-            ref.read(selectedGroupContacts),
+            ref.read(
+              selectedGroupContacts,
+            ),
           );
       ref.read(selectedGroupContacts.notifier).update((state) => []);
       Navigator.pop(context);
@@ -62,7 +64,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                     ? const CircleAvatar(
                         radius: 64,
                         backgroundImage: NetworkImage(
-                            "https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png",),
+                          "https://png.pngitem.com/pimgs/s/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png",
+                        ),
                       )
                     : CircleAvatar(
                         radius: 64,
@@ -73,7 +76,9 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                   left: 80,
                   child: IconButton(
                     onPressed: selectImage,
-                    icon: const Icon(Icons.add_a_photo,),
+                    icon: const Icon(
+                      Icons.add_a_photo,
+                    ),
                   ),
                 )
               ],
@@ -82,8 +87,9 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                 controller: controller,
-                decoration:
-                    const InputDecoration(hintText: "Enter Your Group Name",),
+                decoration: const InputDecoration(
+                  hintText: "Enter Your Group Name",
+                ),
               ),
             ),
             Container(
@@ -91,7 +97,10 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               padding: const EdgeInsets.all(8.0),
               child: const Text(
                 "Select Contact",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600,),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             )
           ],

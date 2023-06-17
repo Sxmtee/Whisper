@@ -237,8 +237,11 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 8.0, right: 2.0, left: 2.0),
+              padding: const EdgeInsets.only(
+                bottom: 8.0,
+                right: 2.0,
+                left: 2.0,
+              ),
               child: CircleAvatar(
                 backgroundColor: AppColors.primaryColor,
                 radius: 25,

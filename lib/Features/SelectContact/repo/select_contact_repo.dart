@@ -6,8 +6,11 @@ import 'package:whisper/Common/Utils/snackBar.dart';
 import 'package:whisper/Features/Chat/screen/mobile_chat_screen.dart';
 import 'package:whisper/Models/userModel.dart';
 
-final selectContactRepoProvider =
-    Provider((ref) => SelectContactRepo(firestore: FirebaseFirestore.instance));
+final selectContactRepoProvider = Provider(
+  (ref) => SelectContactRepo(
+    firestore: FirebaseFirestore.instance,
+  ),
+);
 
 class SelectContactRepo {
   final FirebaseFirestore firestore;
@@ -26,7 +29,10 @@ class SelectContactRepo {
     return contacts;
   }
 
-  void selectedContact(Contact selectedContact, BuildContext context) async {
+  void selectedContact(
+    Contact selectedContact,
+    BuildContext context,
+  ) async {
     try {
       var userCollection = await firestore.collection("users").get();
       bool isFound = false;
@@ -39,8 +45,14 @@ class SelectContactRepo {
         if (selectedPhoneNum == userData.phoneNumber) {
           isFound = true;
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, MobileChatScreen.routeName,
-              arguments: {"name": userData.name, "uid": userData.uid});
+          Navigator.pushNamed(
+            context,
+            MobileChatScreen.routeName,
+            arguments: {
+              "name": userData.name,
+              "uid": userData.uid,
+            },
+          );
         }
       }
 

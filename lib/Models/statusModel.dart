@@ -8,15 +8,16 @@ class Status {
   final String statusId;
   final List<String> whoCanSee;
 
-  Status(
-      {required this.uid,
-      required this.username,
-      required this.phoneNumber,
-      required this.photoUrl,
-      required this.createdAt,
-      required this.profilePic,
-      required this.statusId,
-      required this.whoCanSee});
+  Status({
+    required this.uid,
+    required this.username,
+    required this.phoneNumber,
+    required this.photoUrl,
+    required this.createdAt,
+    required this.profilePic,
+    required this.statusId,
+    required this.whoCanSee,
+  });
 
   Map<String, dynamic> toMap() {
     return {
