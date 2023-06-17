@@ -6,12 +6,21 @@ import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
 class OTPScreen extends ConsumerWidget {
   static const routeName = "/otp-screen";
   final String verificationId;
-  const OTPScreen({super.key, required this.verificationId});
+  const OTPScreen({
+    super.key,
+    required this.verificationId,
+  });
 
-  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
-    ref
-        .read(authControllerProvider)
-        .verifyOTP(context, verificationId, userOTP);
+  void verifyOTP(
+    WidgetRef ref,
+    BuildContext context,
+    String userOTP,
+  ) {
+    ref.read(authControllerProvider).verifyOTP(
+          context,
+          verificationId,
+          userOTP,
+        );
   }
 
   @override
@@ -36,15 +45,16 @@ class OTPScreen extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
-                    hintText: "- - - - - -",
-                    hintStyle: TextStyle(fontSize: 30)),
+                  hintText: "- - - - - -",
+                  hintStyle: TextStyle(fontSize: 30),
+                ),
                 onChanged: (value) {
                   if (value.length == 6) {
                     verifyOTP(ref, context, value.trim());
                   }
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

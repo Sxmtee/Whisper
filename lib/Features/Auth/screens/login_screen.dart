@@ -26,19 +26,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void pickCountry() {
     showCountryPicker(
-        context: context,
-        onSelect: (Country country) {
-          setState(() {
-            selectedCountry = country;
-          });
+      context: context,
+      onSelect: (Country country) {
+        setState(() {
+          selectedCountry = country;
         });
+      },
+    );
   }
 
   void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
     if (selectedCountry != null && phoneNumber.isNotEmpty) {
       ref.read(authControllerProvider).signInwithPhone(
-          context, "+${selectedCountry!.phoneCode}$phoneNumber");
+            context,
+            "+${selectedCountry!.phoneCode}$phoneNumber",
+          );
     } else {
       showSnackBar(context, "Select Your Country Code");
     }
@@ -63,9 +66,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               height: 10,
             ),
             TextButton(
-              onPressed: () {
-                pickCountry();
-              },
+              onPressed: pickCountry,
               child: const Text("Pick Your Country"),
             ),
             const SizedBox(

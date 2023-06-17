@@ -15,9 +15,11 @@ import 'package:whisper/Features/Chat/widgets/sender_message_card.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String receiverUserId;
+  final bool isGroupChat;
   const ChatList({
     Key? key,
     required this.receiverUserId,
+    required this.isGroupChat,
   }) : super(key: key);
 
   @override
@@ -38,17 +40,23 @@ class _ChatListState extends ConsumerState<ChatList> {
     bool isMe,
     MessageEnum messageEnum,
   ) {
-    ref
-        .read(messageReplyProvider.notifier)
-        .update((state) => MessageReply(message, isMe, messageEnum));
+    ref.read(messageReplyProvider.notifier).update((state) => MessageReply(
+          message,
+          isMe,
+          messageEnum,
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: ref
-            .read(chatControllerProvider)
-            .getChatStream(widget.receiverUserId),
+        stream: widget.isGroupChat
+            ? ref
+                .read(chatControllerProvider)
+                .groupChatStream(widget.receiverUserId)
+            : ref
+                .read(chatControllerProvider)
+                .getChatStream(widget.receiverUserId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Loader(radius: 60, color: AppColors.primaryColor);

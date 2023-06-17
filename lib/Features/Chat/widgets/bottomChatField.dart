@@ -15,9 +15,11 @@ import 'package:whisper/Features/Chat/widgets/reply_preview.dart';
 
 class BottomChatField extends ConsumerStatefulWidget {
   final String receiverUserId;
+  final bool isGroupChat;
   const BottomChatField({
     Key? key,
     required this.receiverUserId,
+    required this.isGroupChat,
   }) : super(key: key);
 
   @override
@@ -52,7 +54,11 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   Future<void> sendTextMessage() async {
     if (isShowSendButton) {
       ref.read(chatControllerProvider).sendTextMessage(
-          context, _messageController.text.trim(), widget.receiverUserId);
+            context,
+            _messageController.text.trim(),
+            widget.receiverUserId,
+            widget.isGroupChat,
+          );
       setState(() {
         _messageController.text = "";
       });
@@ -76,9 +82,13 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   }
 
   void sendFileMessage(File file, MessageEnum messageEnum) {
-    ref
-        .read(chatControllerProvider)
-        .sendFileMessage(context, file, widget.receiverUserId, messageEnum);
+    ref.read(chatControllerProvider).sendFileMessage(
+          context,
+          file,
+          widget.receiverUserId,
+          messageEnum,
+          widget.isGroupChat,
+        );
   }
 
   void selectImage() async {
@@ -99,9 +109,12 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
     final gif = await pickGIF(context);
     if (gif != null) {
       // ignore: use_build_context_synchronously
-      ref
-          .read(chatControllerProvider)
-          .sendGIFMessage(context, gif.url, widget.receiverUserId);
+      ref.read(chatControllerProvider).sendGIFMessage(
+            context,
+            gif.url,
+            widget.receiverUserId,
+            widget.isGroupChat,
+          );
     }
   }
 

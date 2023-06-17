@@ -26,7 +26,7 @@ class ChatAppBar extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.01,
               ),
               const Text(
-                'Rivaan Ranawat',
+                'Obi Somto',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -37,11 +37,17 @@ class ChatAppBar extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.search, color: Colors.grey),
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.grey,
+                ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.more_vert, color: Colors.grey),
+                icon: const Icon(
+                  Icons.more_vert,
+                  color: Colors.grey,
+                ),
               ),
             ],
           ),

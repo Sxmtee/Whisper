@@ -31,21 +31,28 @@ class AuthRepo {
     return user;
   }
 
-  void signInwithPhone(BuildContext context, String phoneNumber) async {
+  void signInwithPhone(
+    BuildContext context,
+    String phoneNumber,
+  ) async {
     try {
       await auth.verifyPhoneNumber(
-          phoneNumber: phoneNumber,
-          verificationCompleted: ((phoneAuthCredential) async {
-            await auth.signInWithCredential(phoneAuthCredential);
-          }),
-          verificationFailed: ((error) {
-            throw Exception(error.message);
-          }),
-          codeSent: ((verificationId, forceResendingToken) async {
-            Navigator.pushNamed(context, OTPScreen.routeName,
-                arguments: verificationId);
-          }),
-          codeAutoRetrievalTimeout: ((verificationId) {}));
+        phoneNumber: phoneNumber,
+        verificationCompleted: ((phoneAuthCredential) async {
+          await auth.signInWithCredential(phoneAuthCredential);
+        }),
+        verificationFailed: ((error) {
+          throw Exception(error.message);
+        }),
+        codeSent: ((verificationId, forceResendingToken) async {
+          Navigator.pushNamed(
+            context,
+            OTPScreen.routeName,
+            arguments: verificationId,
+          );
+        }),
+        codeAutoRetrievalTimeout: ((verificationId) {}),
+      );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -60,8 +67,12 @@ class AuthRepo {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: userOTP);
       await auth.signInWithCredential(credential);
+      // ignore: use_build_context_synchronously
       Navigator.pushNamedAndRemoveUntil(
-          context, UserInfoScreen.routeName, (route) => false);
+        context,
+        UserInfoScreen.routeName,
+        (route) => false,
+      );
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -85,19 +96,24 @@ class AuthRepo {
       }
 
       var user = UserModel(
-          name: name,
-          uid: uid,
-          profilePic: photoUrl,
-          isOnline: true,
-          phoneNumber: auth.currentUser!.phoneNumber!,
-          groupId: []);
+        name: name,
+        uid: uid,
+        profilePic: photoUrl,
+        isOnline: true,
+        phoneNumber: auth.currentUser!.phoneNumber!,
+        groupId: [],
+      );
 
       await firestore.collection("users").doc(uid).set(user.toMap());
 
+      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: ((context) => const MobileLayoutScreen())),
-          (route) => false);
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MobileLayoutScreen(),
+        ),
+        (route) => false,
+      );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
