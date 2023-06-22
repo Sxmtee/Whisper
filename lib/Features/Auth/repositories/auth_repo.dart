@@ -11,8 +11,12 @@ import 'package:whisper/Features/Auth/screens/userinfo_screen.dart';
 import 'package:whisper/Models/userModel.dart';
 import 'package:whisper/Screens/mobile_layout_screen.dart';
 
-final authRepoProvider = Provider((ref) => AuthRepo(
-    auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance));
+final authRepoProvider = Provider(
+  (ref) => AuthRepo(
+    auth: FirebaseAuth.instance,
+    firestore: FirebaseFirestore.instance,
+  ),
+);
 
 class AuthRepo {
   final FirebaseAuth auth;
@@ -65,7 +69,9 @@ class AuthRepo {
   }) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationId, smsCode: userOTP);
+        verificationId: verificationId,
+        smsCode: userOTP,
+      );
       await auth.signInWithCredential(credential);
       // ignore: use_build_context_synchronously
       Navigator.pushNamedAndRemoveUntil(

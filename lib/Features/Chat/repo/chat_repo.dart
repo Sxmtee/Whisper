@@ -30,6 +30,7 @@ class ChatRepository {
     required this.auth,
   });
 
+  //List of Contacts you chat with
   Stream<List<ChatContactModel>> getChatContacts() {
     return firestore
         .collection("users")
@@ -75,6 +76,7 @@ class ChatRepository {
     });
   }
 
+  //your chat messages
   Stream<List<MessageModel>> getChatStream(String receiverUserId) {
     return firestore
         .collection("users")

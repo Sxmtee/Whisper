@@ -185,16 +185,12 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                   fillColor: AppColors.mobileChatBoxColor,
                   prefixIcon: SizedBox(
                     width: 100,
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: toggleEmojiKeyboard,
-                          icon: const Icon(
-                            Icons.emoji_emotions,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                    child: IconButton(
+                      onPressed: toggleEmojiKeyboard,
+                      icon: const Icon(
+                        Icons.emoji_emotions,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                   suffixIcon: SizedBox(
@@ -211,9 +207,6 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                             color: Colors.grey,
                           ),
                         ),
-                        // const SizedBox(
-                        //   width: 10,
-                        // ),
                         IconButton(
                           onPressed: selectVideo,
                           icon: const Icon(

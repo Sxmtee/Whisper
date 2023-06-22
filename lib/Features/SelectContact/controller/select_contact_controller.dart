@@ -14,7 +14,9 @@ final selectedContactControllerProvider = Provider(
   (ref) {
     final selectContactRepo = ref.watch(selectContactRepoProvider);
     return SelectedContactController(
-        ref: ref, selectContactRepo: selectContactRepo);
+      ref: ref,
+      selectContactRepo: selectContactRepo,
+    );
   },
 );
 
