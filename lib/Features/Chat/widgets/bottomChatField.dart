@@ -199,9 +199,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         IconButton(
-                          onPressed: () {
-                            selectImage();
-                          },
+                          onPressed: selectImage,
                           icon: const Icon(
                             Icons.camera_alt_outlined,
                             color: Colors.grey,
@@ -239,9 +237,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                 backgroundColor: AppColors.primaryColor,
                 radius: 25,
                 child: GestureDetector(
-                  onTap: () {
-                    sendTextMessage();
-                  },
+                  onTap: sendTextMessage,
                   child: Icon(
                     isShowSendButton
                         ? Icons.send

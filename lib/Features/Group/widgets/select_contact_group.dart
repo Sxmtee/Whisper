@@ -34,34 +34,35 @@ class _SelectContactGroupState extends ConsumerState<SelectContactGroup> {
   @override
   Widget build(BuildContext context) {
     return ref.watch(getContactsProvider).when(
-        data: (contactList) => Expanded(
-              child: ListView.builder(
-                itemCount: contactList.length,
-                itemBuilder: (context, index) {
-                  final contact = contactList[index];
-                  return InkWell(
-                    onTap: () => selectContact(index, contact),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: ListTile(
-                        leading: selectedContactsIndex.contains(index)
-                            ? const Icon(Icons.done)
-                            : null,
-                        title: Text(
-                          contact.displayName,
-                          style: const TextStyle(fontSize: 18),
-                        ),
+          data: (contactList) => Expanded(
+            child: ListView.builder(
+              itemCount: contactList.length,
+              itemBuilder: (context, index) {
+                final contact = contactList[index];
+                return InkWell(
+                  onTap: () => selectContact(index, contact),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: ListTile(
+                      leading: selectedContactsIndex.contains(index)
+                          ? const Icon(Icons.done)
+                          : null,
+                      title: Text(
+                        contact.displayName,
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
-        error: (err, trace) {
-          return ErrorScreen(error: err.toString());
-        },
-        loading: () {
-          return const Loader();
-        });
+          ),
+          error: (err, trace) {
+            return ErrorScreen(error: err.toString());
+          },
+          loading: () {
+            return const Loader();
+          },
+        );
   }
 }

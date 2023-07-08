@@ -102,7 +102,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            )
+            ),
+            const SelectContactGroup()
           ],
         ),
       ),

@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:whisper/Common/Utils/snackBar.dart';
 import 'package:whisper/Features/Auth/repositories/common_firebase_storage_repo.dart';
-import 'package:whisper/Models/groupModel.dart' as model;
+import 'package:whisper/Models/groupModel.dart';
 
 final groupRepositoryProvider = Provider(
   (ref) => GroupRepository(
@@ -62,7 +62,7 @@ class GroupRepository {
           .read(commonFirebaseStorageRepoProvider)
           .storeFileToFirebase("group/$groupId", profilePic);
 
-      model.GroupModel group = model.GroupModel(
+      GroupModel group = GroupModel(
         name: name,
         senderId: auth.currentUser!.uid,
         groupPic: profileUrl,

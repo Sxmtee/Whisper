@@ -7,8 +7,11 @@ import 'package:whisper/Features/Chat/widgets/video_player_item.dart';
 class DisplayMessageType extends StatelessWidget {
   final String message;
   final MessageEnum type;
-  const DisplayMessageType(
-      {super.key, required this.message, required this.type});
+  const DisplayMessageType({
+    super.key,
+    required this.message,
+    required this.type,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,30 +25,29 @@ class DisplayMessageType extends StatelessWidget {
             ),
           )
         : type == MessageEnum.audio
-            ? StatefulBuilder(builder: (context, setState) {
-                return IconButton(
+            ? StatefulBuilder(
+                builder: (context, setState) {
+                  return IconButton(
                     constraints: const BoxConstraints(minWidth: 100),
-                    onPressed: (() async {
+                    onPressed: () async {
                       if (isPlaying) {
                         await audioPlayer.pause();
-                        setState(
-                          () {
-                            isPlaying = false;
-                          },
-                        );
+                        setState(() {
+                          isPlaying = false;
+                        });
                       } else {
                         await audioPlayer.play(UrlSource(message));
-                        setState(
-                          () {
-                            isPlaying = true;
-                          },
-                        );
+                        setState(() {
+                          isPlaying = true;
+                        });
                       }
-                    }),
+                    },
                     icon: Icon(
                       isPlaying ? Icons.pause_circle : Icons.play_circle,
-                    ));
-              })
+                    ),
+                  );
+                },
+              )
             : type == MessageEnum.video
                 ? VideoPlayerItem(videoUrl: message)
                 : type == MessageEnum.gif

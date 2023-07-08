@@ -53,8 +53,10 @@ class StatusRepository {
       for (int i = 0; i < contacts.length; i++) {
         var userDataFirebase = await firestore
             .collection("users")
-            .where("phoneNumber",
-                isEqualTo: contacts[i].phones[0].number.replaceAll(" ", ""))
+            .where(
+              "phoneNumber",
+              isEqualTo: contacts[i].phones[0].number.replaceAll(" ", ""),
+            )
             .get();
         if (userDataFirebase.docs.isNotEmpty) {
           var userData = UserModel.fromMap(userDataFirebase.docs[0].data());
@@ -66,8 +68,10 @@ class StatusRepository {
       var statusesSnapshot = await firestore
           .collection("status")
           .where("uid", isEqualTo: auth.currentUser!.uid)
-          .where("createdAt",
-              isLessThan: DateTime.now().subtract(const Duration(hours: 24)))
+          .where(
+            "createdAt",
+            isLessThan: DateTime.now().subtract(const Duration(hours: 24)),
+          )
           .get();
       if (statusesSnapshot.docs.isNotEmpty) {
         Status status = Status.fromMap(statusesSnapshot.docs[0].data());
@@ -83,14 +87,15 @@ class StatusRepository {
       }
 
       Status status = Status(
-          uid: uid,
-          username: username,
-          phoneNumber: phoneNumber,
-          photoUrl: statusImageUrls,
-          createdAt: DateTime.now(),
-          profilePic: profilePic,
-          statusId: statusId,
-          whoCanSee: uidWhoCanSee);
+        uid: uid,
+        username: username,
+        phoneNumber: phoneNumber,
+        photoUrl: statusImageUrls,
+        createdAt: DateTime.now(),
+        profilePic: profilePic,
+        statusId: statusId,
+        whoCanSee: uidWhoCanSee,
+      );
 
       await firestore.collection("status").doc(statusId).set(status.toMap());
     } catch (e) {
@@ -109,12 +114,16 @@ class StatusRepository {
       for (int i = 0; i < contacts.length; i++) {
         var statusesSnapshot = await firestore
             .collection("status")
-            .where("phoneNumber",
-                isEqualTo: contacts[i].phones[0].number.replaceAll(" ", ""))
-            .where("createdAt",
-                isGreaterThan: DateTime.now()
-                    .subtract(const Duration(hours: 24))
-                    .millisecondsSinceEpoch)
+            .where(
+              "phoneNumber",
+              isEqualTo: contacts[i].phones[0].number.replaceAll(" ", ""),
+            )
+            .where(
+              "createdAt",
+              isGreaterThan: DateTime.now()
+                  .subtract(const Duration(hours: 24))
+                  .millisecondsSinceEpoch,
+            )
             .get();
         for (var tempData in statusesSnapshot.docs) {
           Status tempStatus = Status.fromMap(tempData.data());

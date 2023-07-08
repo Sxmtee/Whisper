@@ -40,7 +40,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           Align(
             alignment: Alignment.center,
             child: IconButton(
-              onPressed: (() {
+              onPressed: () {
                 if (isPlay) {
                   videoPlayerController.pause();
                 } else {
@@ -49,7 +49,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                 setState(() {
                   isPlay = !isPlay;
                 });
-              }),
+              },
               icon: Icon(isPlay ? Icons.pause_circle : Icons.play_circle),
             ),
           ),

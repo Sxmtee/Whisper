@@ -305,6 +305,7 @@ class ChatRepository {
         default:
           contactMsg = "Whisper";
       }
+
       _saveDataToContactSubcollection(
         senderUserData,
         receiverUserData,

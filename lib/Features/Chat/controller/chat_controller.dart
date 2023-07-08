@@ -92,7 +92,7 @@ class ChatController {
     bool isGroupChat,
   ) {
     final messageReply = ref.read(messageReplyProvider);
-    int gifUrlPartIndex = gifUrl.lastIndexOf("_") + 1;
+    int gifUrlPartIndex = gifUrl.lastIndexOf("-") + 1;
     String gifUrlPart = gifUrl.substring(gifUrlPartIndex);
     String newGifUrl = "https://i.giphy.com/media/$gifUrlPart/200.gif";
 
