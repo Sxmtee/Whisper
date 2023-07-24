@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisper/Common/Utils/colors.dart';
 import 'package:whisper/Common/Utils/pickfile.dart';
 import 'package:whisper/Features/Auth/controllers/auth_controller.dart';
-import 'package:whisper/Features/Chat/widgets/contacts_list.dart';
+import 'package:whisper/Features/Chat/screen/contacts_list.dart';
 import 'package:whisper/Features/Group/screens/create_group_screen.dart';
 import 'package:whisper/Features/SelectContact/screens/select_contact_screen.dart';
 import 'package:whisper/Features/Status/screens/confirm_status.dart';

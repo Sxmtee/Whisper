@@ -4,14 +4,13 @@ import 'package:whisper/Common/Widgets/webWidgets/web_chat_appbar.dart';
 import 'package:whisper/Common/Widgets/webWidgets/web_profile_bar.dart';
 import 'package:whisper/Common/Widgets/webWidgets/web_search_bar.dart';
 import 'package:whisper/Features/Chat/widgets/chat_list.dart';
-import 'package:whisper/Features/Chat/widgets/contacts_list.dart';
+import 'package:whisper/Features/Chat/screen/contacts_list.dart';
 
 class WebLayoutScreen extends StatelessWidget {
   const WebLayoutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // var chatBarMessage;
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
