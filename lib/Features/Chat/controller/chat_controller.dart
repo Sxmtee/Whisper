@@ -70,18 +70,18 @@ class ChatController {
     bool isGroupChat,
   ) {
     final messageReply = ref.read(messageReplyProvider);
-    ref
-        .read(userDataAuthProvider)
-        .whenData((value) => chatRepository.sendFileMessage(
-              context: context,
-              file: file,
-              receiverUserId: receiverUserId,
-              senderUserData: value!,
-              ref: ref,
-              messageEnum: messageEnum,
-              messageReply: messageReply,
-              isGroupChat: isGroupChat,
-            ));
+    ref.read(userDataAuthProvider).whenData(
+          (value) => chatRepository.sendFileMessage(
+            context: context,
+            file: file,
+            receiverUserId: receiverUserId,
+            senderUserData: value!,
+            ref: ref,
+            messageEnum: messageEnum,
+            messageReply: messageReply,
+            isGroupChat: isGroupChat,
+          ),
+        );
     ref.read(messageReplyProvider.notifier).update((state) => null);
   }
 
